@@ -20,7 +20,11 @@
         "aarch64-darwin"
       ];
 
-      perSystem = {system, ...}: let
+      perSystem = {
+        system,
+        pkgs,
+        ...
+      }: let
         nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
         nixvimModule = {
@@ -37,6 +41,8 @@
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
+
+        formatter = pkgs.alejandra;
 
         packages = {
           # Lets you run `nix run .` to start nixvim
