@@ -61,6 +61,9 @@
   # and elegantly composed help section, `:help lsp-vs-treesitter`
   #
   # https://nix-community.github.io/nixvim/plugins/lsp/index.html
+  extraPackages = with pkgs; [
+    docker-compose-language-service
+  ];
   plugins.lsp = {
     enable = true;
 
@@ -102,6 +105,10 @@
         enable = true;
       };
       bashls = {
+        enable = true;
+      };
+
+      docker_compose_language_service = {
         enable = true;
       };
       # pyright = {
