@@ -68,12 +68,12 @@
   };
 
   keymaps = [
-    {
-      mode = "";
-      # mode = "n";
-      key = "<leader>lg";
-      action = "<cmd>LazyGit<CR>";
-    }
+    # {
+    #   mode = "";
+    #   # mode = "n";
+    #   key = "<leader>lg";
+    #   action = "<cmd>LazyGit<CR>";
+    # }
     {
       key = "<leader>n";
       action = "<CMD>lua Snacks.picker.notifications() <CR>";
@@ -186,11 +186,11 @@
       action = "<CMD>lua Snacks.picker.search_history() <CR>";
       options = {desc = "Search History";};
     }
-    {
-      key = "<leader>sa";
-      action = "<CMD>lua Snacks.picker.autocmds() <CR>";
-      options = {desc = "Autocmds";};
-    }
+    # {
+    #   key = "<leader>sa";
+    #   action = "<CMD>lua Snacks.picker.autocmds() <CR>";
+    #   options = {desc = "Autocmds";};
+    # }
     {
       key = "<leader>sb";
       action = "<CMD>lua Snacks.picker.lines() <CR>";
@@ -206,26 +206,26 @@
       action = "<CMD>lua Snacks.picker.commands() <CR>";
       options = {desc = "Commands";};
     }
-    {
-      key = "<leader>sd";
-      action = "<CMD>lua Snacks.picker.diagnostics() <CR>";
-      options = {desc = "Diagnostics";};
-    }
-    {
-      key = "<leader>sD";
-      action = "<CMD>lua Snacks.picker.diagnostics_buffer() <CR>";
-      options = {desc = "Buffer Diagnostics";};
-    }
-    {
-      key = "<leader>sh";
-      action = "<CMD>lua Snacks.picker.help() <CR>";
-      options = {desc = "Help Pages";};
-    }
-    {
-      key = "<leader>sH";
-      action = "<CMD>lua Snacks.picker.highlights() <CR>";
-      options = {desc = "Highlights";};
-    }
+    # {
+    #   key = "<leader>sd";
+    #   action = "<CMD>lua Snacks.picker.diagnostics() <CR>";
+    #   options = {desc = "Diagnostics";};
+    # }
+    # {
+    #   key = "<leader>sD";
+    #   action = "<CMD>lua Snacks.picker.diagnostics_buffer() <CR>";
+    #   options = {desc = "Buffer Diagnostics";};
+    # }
+    # {
+    #   key = "<leader>sh";
+    #   action = "<CMD>lua Snacks.picker.help() <CR>";
+    #   options = {desc = "Help Pages";};
+    # }
+    # {
+    #   key = "<leader>sH";
+    #   action = "<CMD>lua Snacks.picker.highlights() <CR>";
+    #   options = {desc = "Highlights";};
+    # }
     {
       key = "<leader>si";
       action = "<CMD>lua Snacks.picker.icons() <CR>";
@@ -266,11 +266,11 @@
       action = "<CMD>lua Snacks.picker.qflist() <CR>";
       options = {desc = "Quickfix List";};
     }
-    {
-      key = "<leader>sR";
-      action = "<CMD>lua Snacks.picker.resume() <CR>";
-      options = {desc = "Resume";};
-    }
+    # {
+    #   key = "<leader>sR";
+    #   action = "<CMD>lua Snacks.picker.resume() <CR>";
+    #   options = {desc = "Resume";};
+    # }
     {
       key = "<leader>su";
       action = "<CMD>lua Snacks.picker.undo() <CR>";
