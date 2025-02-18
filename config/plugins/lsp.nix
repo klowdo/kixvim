@@ -84,9 +84,9 @@
           nixpkgs.expr = "import <nixpkgs> { }";
           options = {
             #TODO: this should not be hardcoded nix configs
-            nixvim.expr = ''(builtins.getFlake "/home/klowdo/dev/github/kixvim").packages.x86_64-linux.neovimNixvim.options'';
-            nixos.expr = ''(builtins.getFlake (builtins.getEnv \"FLAKE\")).nixosConfigurations.dellicious.options'';
-            home_manager.expr = ''(builtins.getFlake (builtins.getEnv \"FLAKE\")).homeConfigurations.klowdo@dellicious.options'';
+            nixvim.expr = ''(builtins.getFlake "/home/klowdo/dev/github/kixvim").packages.x86_64-linux.default.options'';
+            nixos.expr = ''(builtins.getFlake (builtins.getEnv "FLAKE")).nixosConfigurations.dellicious.options'';
+            home_manager.expr = ''(builtins.getFlake (builtins.getEnv "FLAKE")).homeConfigurations."klowdo@dellicious".options'';
           };
         };
       };
