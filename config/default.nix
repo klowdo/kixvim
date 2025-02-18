@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # Import all your configuration modules here
   imports = [
-    ./bufferline.nix
+    # ./bufferline.nix
     ./mini.nix
     ./vim-tmux.nix
     ./snacks.nix
