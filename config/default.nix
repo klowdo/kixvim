@@ -47,6 +47,7 @@
     # ./plugins/custom/plugins/markview.nix
     # ./plugins/custom/plugins
   ];
+  enableMan = true;
   colorschemes = {
     # https://nix-community.github.io/nixvim/colorschemes/catppuccin/index.html
     catppuccin = {
