@@ -16,6 +16,7 @@
     ./plugins/nvim-cmp.nix
     ./plugins/mini.nix
     ./plugins/treesitter.nix
+    ./plugins/auto-session.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
