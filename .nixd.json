@@ -1,0 +1,9 @@
+{
+  // Tell the language server your desired option set, for completion
+  // This is lazily evaluated.
+  "options": { // Map of eval information
+    "nixvim": {
+      "expr": "(builtins.getFlake \"/home/klowdo/dev/github/kixvim/\").packages.x86_64-linux.default.options"
+    }
+  }
+}
