@@ -1,0 +1,5 @@
+{
+  plugins.dotnet = {
+    enable = true;
+  };
+}
