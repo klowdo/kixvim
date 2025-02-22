@@ -17,6 +17,7 @@
         "vim"
         "vimdoc"
         "terraform"
+        "just"
       ];
       indent = {
         enable = true;
