@@ -17,6 +17,7 @@
     ./plugins/mini.nix
     ./plugins/treesitter.nix
     ./plugins/auto-session.nix
+    ./plugins/flash.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
