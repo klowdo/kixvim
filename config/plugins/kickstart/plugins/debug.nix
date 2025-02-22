@@ -46,6 +46,11 @@
     dap-go = {
       enable = true;
     };
+
+    ## C  provide C, C++, and Rust debugging support.
+    dap-lldb = {
+      enable = true;
+    };
   };
 
   # https://nix-community.github.io/nixvim/keymaps/index.html
