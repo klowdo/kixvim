@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
 
   outputs = {
@@ -20,7 +21,12 @@
         "aarch64-darwin"
       ];
 
+      imports = [
+        inputs.git-hooks-nix.flakeModule
+      ];
+
       perSystem = {
+        config,
         system,
         pkgs,
         ...
@@ -37,12 +43,21 @@
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
       in {
+        imports = [
+          ./pre-commit.nix
+        ];
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
 
         formatter = pkgs.alejandra;
+        devShells.default = pkgs.mkShell {
+          shellHook = ''
+            ${config.pre-commit.installationScript}
+            echo 1>&2 "Welcome to the development shell!"
+          '';
+        };
 
         packages = {
           # Lets you run `nix run .` to start nixvim
