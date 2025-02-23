@@ -1,24 +1,33 @@
-{
+{pkgs, ...}: {
   # Highlight, edit, and navigate code
   # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
   plugins.treesitter = {
     enable = true;
 
     # TODO: Don't think I need this as nixGrammars is true which should atuo install these???
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      c
+      diff
+      html
+      bash
+      json
+      lua
+      make
+      markdown
+      nix
+      regex
+      toml
+      vim
+      vimdoc
+      yaml
+      terraform
+      just
+      gitcommit
+      git-rebase
+      git-rebase
+      gitignore
+    ];
     settings = {
-      ensure_installed = [
-        "bash"
-        "c"
-        "diff"
-        "html"
-        "lua"
-        "luadoc"
-        "markdown"
-        "vim"
-        "vimdoc"
-        "terraform"
-        "just"
-      ];
       indent = {
         enable = true;
       };
