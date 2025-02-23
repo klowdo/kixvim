@@ -7,6 +7,7 @@
     ./snacks.nix
     ./keys.nix
     ./auto.nix
+    ./lazy-loader.nix
     # Plugins
     ./plugins/gitsigns.nix
     ./plugins/which-key.nix

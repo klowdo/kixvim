@@ -2,6 +2,13 @@
   # https://nix-community.github.io/nixvim/plugins/obsidian/settings/index.html
   plugins.obsidian = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        ft = "markdown";
+      };
+    };
+
     settings = {
       completion = {
         min_chars = 2;
