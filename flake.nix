@@ -49,5 +49,18 @@
           default = nvim;
         };
       };
+      flake = {
+        # Export as both NixOS and home-manager modules
+        nixosModules.nixvim = {...}: {
+          imports = [nixvim.nixosModules.nixvim];
+          programs.nixvim = import ./config;
+        };
+
+        # Add home-manager module
+        homeManagerModules.nixvim = {...}: {
+          imports = [nixvim.homeManagerModules.nixvim];
+          programs.nixvim = import ./config;
+        };
+      };
     };
 }
