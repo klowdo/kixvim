@@ -8,6 +8,7 @@
     nixfmt-rfc-style
     alejandra
     clang-tools
+    shfmt
   ];
 
   # Autoformat
@@ -17,6 +18,7 @@
     settings = {
       formatters_by_ft = {
         lua = ["stylua"];
+        bash = ["shfmt"];
         nix = {
           __unkeyed-1 = "alejandra";
           __unkeyed-2 = "nixfmt";
