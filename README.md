@@ -1,6 +1,39 @@
-# Nixvim template
+# Kixvim (Klowdo's nixvim)
 
-This template gives you a good starting point for configuring nixvim standalone.
+This flake provies my nixvim configuration.
+I've mainly broken out this config to easier test new
+stuff without rebuilding nixos.
+alias `ndev = nix run ./path/to/kixvim/repo/`
+
+## Installation
+
+### flake.nix
+
+```nix
+inputs = {
+    kixvim.url = "github:klowdo/kixvim";
+};
+```
+
+### configuration.nix
+
+```nix
+imports = [
+    nixvim.nixosModules.nixvim
+];
+
+programs.nixvim.enable = true;
+```
+
+### home-manager.nix
+
+```nix
+imports = [
+    nixvim.homeManagerModules.nixvim
+];
+
+programs.nixvim.enable = true;
+```
 
 ## Configuring
 
@@ -12,7 +45,6 @@ If you add a new configuration file, remember to add it to the
 
 To test your configuration simply run the following command
 
-```
+``` nix
 nix run .
 ```
-
