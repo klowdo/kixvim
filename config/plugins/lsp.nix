@@ -107,6 +107,9 @@
       bashls = {
         enable = true;
       };
+      jsonls = {
+        enable = true;
+      };
 
       docker_compose_language_service = {
         enable = true;

@@ -9,6 +9,7 @@
     alejandra
     clang-tools
     shfmt
+    fixjson
   ];
 
   # Autoformat
@@ -25,6 +26,8 @@
           stop_after_first = true;
         };
         c = ["clang-format"];
+
+        json = "fixjson";
 
         "_" = {
           __unkeyed-1 = "squeeze_blanks";
