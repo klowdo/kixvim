@@ -20,6 +20,7 @@
     ./plugins/auto-session.nix
     ./plugins/flash.nix
     ./plugins/neotest.nix
+    ./plugins/otter.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
