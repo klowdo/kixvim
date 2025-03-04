@@ -5,12 +5,23 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
+
+    snacks-nvim = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
+    trouble-nvim = {
+      url = "github:folke/trouble.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
     nixvim,
     flake-parts,
+    self,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -23,6 +34,7 @@
 
       imports = [
         inputs.git-hooks-nix.flakeModule
+        ./flake/pkgs-by-name.nix
       ];
 
       perSystem = {
@@ -38,7 +50,7 @@
           module = import ./config; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
-            # inherit (inputs) foo;
+            inherit inputs system self;
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;

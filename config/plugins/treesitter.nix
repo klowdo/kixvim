@@ -1,70 +1,131 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   # Highlight, edit, and navigate code
   # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
-  plugins.treesitter = {
-    enable = true;
+  plugins = {
+    treesitter = {
+      enable = true;
+      folding = false; #COOL but.. need to know how to use
 
-    # TODO: Don't think I need this as nixGrammars is true which should atuo install these???
-    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-      c
-      diff
-      html
-      xml
-      bash
-      json
-      lua
-      make
-      markdown
-      nix
-      regex
-      toml
-      vim
-      vimdoc
-      yaml
-      terraform
-      just
-      gitcommit
-      git-rebase
-      git-rebase
-      gitignore
-      ## go lang
-      go
-      goctl
-      gosum
-      gotmpl
-      gowork
-      gomod
-    ];
-    settings = {
-      indent = {
-        enable = true;
+      # TODO: Don't think I need this as nixGrammars is true which should atuo install these???
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        c
+        diff
+        html
+        bash
+        json
+        lua
+        make
+        markdown
+        nix
+        regex
+        toml
+        vim
+        vimdoc
+        yaml
+        terraform
+        just
+        gitcommit
+        git-rebase
+        git-rebase
+        gitignore
+        c
+        diff
+        html
+        bash
+        json
+        lua
+        make
+        markdown
+        nix
+        regex
+        toml
+        vim
+        vimdoc
+        yaml
+        terraform
+        just
+        gitcommit
+        git-rebase
+        git-rebase
+        gitignore
+      ];
+      settings = {
+        nixvimInjections = true;
+
+        highlight = {
+          additional_vim_regex_highlighting = true;
+          enable = true;
+          disable =
+            # Lua
+            ''
+              function(lang, bufnr)
+                return vim.api.nvim_buf_line_count(bufnr) > 10000
+              end
+            '';
+        };
+
+        incremental_selection = {
+          enable = true;
+          keymaps = {
+            init_selection = "gnn";
+            node_incremental = "grn";
+            scope_incremental = "grc";
+            node_decremental = "grm";
+          };
+        };
+
+        indent = {
+          enable = true;
+        };
       };
     };
 
-    # TODO: Figure out how to do this
-    #highlight = {
-    #  enable = true;
+    treesitter-context = {
+      inherit (config.plugins.treesitter) enable;
+      settings = {
+        max_lines = 4;
+        min_window_height = 40;
+        multiwindow = true;
+        separator = "-";
+      };
+    };
 
-    # Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-    #  If you are experiencing weird indenting issues, add the language to
-    #  the list of additional_vim_regex_highlighting and disabled languages for indent.
-    #  additional_vim_regex_highlighting = [
-    #    "ruby"
-    #  ];
-    #};
+    treesitter-refactor = {
+      inherit (config.plugins.treesitter) enable;
 
-    #enable = true;
-    # TODO: Figure out how to do this
-    #disable = [
-    #  "ruby"
-    #];
-    #};
-
-    # There are additional nvim-treesitter modules that you can use to interact
-    # with nvim-treesitter. You should go explore a few and see what interests you:
-    #
-    #    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    #    - Show your current context: https://nix-community.github.io/nixvim/plugins/treesitter-context/index.html
-    #    - Treesitter + textobjects: https://nix-community.github.io/nixvim/plugins/treesitter-textobjects/index.html
+      highlightDefinitions = {
+        enable = true;
+        clearOnCursorMove = true;
+      };
+      smartRename = {
+        enable = true;
+      };
+      navigation = {
+        enable = true;
+      };
+    };
   };
+
+  # There are additional nvim-treesitter modules that you can use to interact
+  # with nvim-treesitter. You should go explore a few and see what interests you:
+  #
+  #    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+  #    - Show your current context: https://nix-community.github.io/nixvim/plugins/treesitter-context/index.html
+  #    - Treesitter + textobjects: https://nix-community.github.io/nixvim/plugins/treesitter-textobjects/index.html
+
+  keymaps = lib.mkIf config.plugins.treesitter-context.enable [
+    {
+      mode = "n";
+      key = "<leader>ut";
+      action = "<cmd>TSContextToggle<cr>";
+      options = {
+        desc = "Treesitter Context toggle";
+      };
+    }
+  ];
 }
