@@ -3,6 +3,8 @@ name: Run renovate
 on:
   schedule:
     - cron: "30 00 * * 0"
+  push: []
+  pull_request: []
 
 jobs:
   renovate:
