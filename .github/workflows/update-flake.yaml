@@ -1,24 +1,23 @@
-name: Update flake
+name: "Update flakes"
 on:
+  repository_dispatch:
+  workflow_dispatch:
   schedule:
-    - cron: "30 00 * * 1"
-
+    - cron: "0 0 * * *"
 jobs:
-  lockfile:
+  createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
-
-      - name: Instal Nix
-        uses: DeterminateSystems/nix-installer-action@v16
-
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
         with:
-          nix-options: --debug --log-format raw
-          token: ${{ secrets.FLAKE_TOKEN }}
-          pr-title: "deps: update flake.lock"
           pr-labels: |
             dependencies
             automated
+            merge-queue
