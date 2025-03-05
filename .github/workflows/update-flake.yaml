@@ -4,6 +4,7 @@ on:
     - cron: "30 00 * * 1"
   push: []
   pull_request: []
+
 jobs:
   lockfile:
     runs-on: ubuntu-latest
