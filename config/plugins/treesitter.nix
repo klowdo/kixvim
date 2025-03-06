@@ -26,6 +26,13 @@
       git-rebase
       git-rebase
       gitignore
+      ## go lang
+      go
+      goctl
+      gosum
+      gotmpl
+      gowork
+      gomod
     ];
     settings = {
       indent = {
