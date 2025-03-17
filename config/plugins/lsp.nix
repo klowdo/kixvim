@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ./lsp
+  ];
   # Dependencies
   #
   # https://nix-community.github.io/nixvim/plugins/cmp-nvim-lsp.html
@@ -114,6 +117,11 @@
       docker_compose_language_service = {
         enable = true;
       };
+
+      #https://github.com/sukhmancs/nixos-configs/blob/89f8ff9647e5bb7638def267238401a374d6d5fa/homes/shared/nixvim/config/plugins/lsp/lspsaga.nix
+      yamlls = {
+        enable = true;
+      };
       # pyright = {
       #  enable = true;
       #}
@@ -172,6 +180,55 @@
           action = "setloclist";
           desc = "Open diagnostic [Q]uickfix list";
         };
+        # silent = true;
+        # lspBuf = {
+        #   gd = {
+        #     action = "definition";
+        #     desc = "Goto Definition";
+        #   };
+        #   gr = {
+        #     action = "references";
+        #     desc = "Goto References";
+        #   };
+        #   gD = {
+        #     action = "declaration";
+        #     desc = "Goto Declaration";
+        #   };
+        #   gI = {
+        #     action = "implementation";
+        #     desc = "Goto Implementation";
+        #   };
+        #   gT = {
+        #     action = "type_definition";
+        #     desc = "Type Definition";
+        #   };
+        #   K = {
+        #     action = "hover";
+        #     desc = "Hover";
+        #   };
+        #   "<leader>cw" = {
+        #     action = "workspace_symbol";
+        #     desc = "Workspace Symbol";
+        #   };
+        #   "<leader>cr" = {
+        #     action = "rename";
+        #     desc = "Rename";
+        #   };
+        # };
+        # diagnostic = {
+        #   "<leader>cd" = {
+        #     action = "open_float";
+        #     desc = "Line Diagnostics";
+        #   };
+        #   "[d" = {
+        #     action = "goto_next";
+        #     desc = "Next Diagnostic";
+        #   };
+        #   "]d" = {
+        #     action = "goto_prev";
+        #     desc = "Previous Diagnostic";
+        #   };
+        # };
       };
 
       extra = [
@@ -266,7 +323,6 @@
         };
       };
     };
-
     # LSP servers and clients are able to communicate to each other what features they support.
     #  By default, Neovim doesn't support everything that is in the LSP specification.
     #  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -330,4 +386,28 @@
       end
     '';
   };
+
+  extraConfigLua = ''
+    local _border = "rounded"
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      vim.lsp.handlers.hover, {
+        border = _border
+      }
+    )
+
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      vim.lsp.handlers.signature_help, {
+        border = _border
+      }
+    )
+
+    vim.diagnostic.config{
+      float={border=_border}
+    };
+
+    require('lspconfig.ui.windows').default_options = {
+      border = _border
+    }
+  '';
 }
