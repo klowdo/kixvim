@@ -1,4 +1,7 @@
-{
+{pkgs, ...}: {
+  extraPackages = with pkgs; [
+    netcoredbg
+  ];
   plugins.neotest = {
     enable = true;
     settings = {
