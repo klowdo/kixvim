@@ -9,6 +9,7 @@
       c
       diff
       html
+      xml
       bash
       json
       lua
