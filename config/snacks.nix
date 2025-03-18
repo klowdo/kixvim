@@ -64,6 +64,9 @@
       lazygit = {
         enabled = true;
       };
+      image = {
+        enabled = true;
+      };
     };
   };
 
