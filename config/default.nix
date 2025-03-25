@@ -21,6 +21,8 @@
     ./plugins/flash.nix
     ./plugins/neotest.nix
     ./plugins/otter.nix
+    ./plugins/remote-nvim.nix
+    ./plugins/remote-sshfs.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
