@@ -50,6 +50,7 @@
     ./plugins/custom/plugins/neorg.nix
     ./plugins/custom/plugins/persistence.nix
     ./plugins/custom/plugins/obsidian.nix
+    ./plugins/custom/plugins/default.nix
 
     #NOTE: a bit annoying.. maybe a kebinging to toggle
     # ./plugins/custom/plugins/markview.nix

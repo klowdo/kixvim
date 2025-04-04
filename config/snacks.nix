@@ -1,4 +1,5 @@
 {
+  pkgs,
   self,
   system,
   ...
@@ -49,6 +50,10 @@
     };
   };
   plugins.noice.enable = true;
+
+  ## For snacks.Image
+  extraLuaPackages = ps: [ps.magick];
+  extraPackages = [pkgs.imagemagick];
   plugins.snacks = {
     enable = true;
     package = self.packages.${system}.snacks-nvim;
@@ -67,12 +72,12 @@
       };
       image = {
         enabled = true;
+        doc = {
+          inline = false;
+        };
       };
 
       lazygit = {
-        enabled = true;
-      };
-      image = {
         enabled = true;
       };
     };
