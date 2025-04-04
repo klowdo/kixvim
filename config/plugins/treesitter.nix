@@ -53,6 +53,7 @@
         git-rebase
         git-rebase
         gitignore
+        hcl
       ];
       settings = {
         nixvimInjections = true;
