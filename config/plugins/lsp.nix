@@ -114,6 +114,10 @@
         enable = true;
       };
 
+      ts_ls = {
+        enable = true;
+      };
+
       docker_compose_language_service = {
         enable = true;
       };
