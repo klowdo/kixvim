@@ -14,6 +14,11 @@
       # TODO: Don't think I need this as nixGrammars is true which should atuo install these???
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         c
+        gotmpl
+        helm
+        go
+        gosum
+        gomod
         diff
         html
         bash
