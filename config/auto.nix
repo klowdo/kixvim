@@ -5,6 +5,9 @@
       clear = true;
     };
   };
+  plugins.auto-save = {
+    enable = true;
+  };
 
   plugins.auto-save = {
     enable = true;
