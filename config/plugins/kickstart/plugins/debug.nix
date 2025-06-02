@@ -12,6 +12,9 @@
       extensions = {
       };
     };
+    dap-virtual-text = {
+      enable = true;
+    };
 
     # Creates a beautiful debugger UI
     dap-ui = {
