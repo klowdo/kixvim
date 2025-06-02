@@ -88,8 +88,8 @@
           options = {
             #TODO: this should not be hardcoded nix configs
             nixvim.expr = ''(builtins.getFlake "/home/klowdo/dev/github/kixvim").packages.x86_64-linux.default.options'';
-            nixos.expr = ''(builtins.getFlake (builtins.getEnv "FLAKE")).nixosConfigurations.dellicious.options'';
-            home_manager.expr = ''(builtins.getFlake (builtins.getEnv "FLAKE")).homeConfigurations."klowdo@dellicious".options'';
+            nixos.expr = ''(builtins.getFlake (builtins.getEnv "NH_FLAKE")).nixosConfigurations.dellicious.options'';
+            home_manager.expr = ''(builtins.getFlake (builtins.getEnv "NH_FLAKE")).homeConfigurations."klowdo@dellicious".options'';
           };
         };
       };
