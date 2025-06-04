@@ -23,6 +23,7 @@
     ./plugins/otter.nix
     ./plugins/remote-nvim.nix
     ./plugins/remote-sshfs.nix
+    ./plugins/spectre.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
