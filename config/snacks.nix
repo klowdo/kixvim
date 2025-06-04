@@ -101,11 +101,11 @@
         desc = "Notification History";
       };
     }
-    {
-      key = "<leader>e";
-      action = "<CMD>lua Snacks.explorer() <CR>";
-      options = {desc = "File Explorer";};
-    }
+    # {
+    #   key = "<leader>e";
+    #   action = "<CMD>lua Snacks.explorer() <CR>";
+    #   options = {desc = "File Explorer";};
+    # }
     # # -- find
     {
       key = "<leader>fb";
