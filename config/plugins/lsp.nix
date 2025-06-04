@@ -104,6 +104,36 @@
       gopls = {
         enable = true;
       };
+
+      golangci_lint_ls = {
+        enable = true;
+
+        # extraOptions = {
+        # };
+        # filetypes = ["go" "gomod"];
+        extraOptions = {
+          init_options = {
+            command = ["golangci-lint" "run" "--out-format" "json"];
+            # whitelist = ["go"];
+            # "--out-format json";
+          };
+        };
+
+        # init_options = {
+        #   command = ["./bin/golangci-lint" "run" "--out-format json" "-issues-exit-code=1"];
+        #   # whitelist = ["go"];
+        #   # "--out-format json";
+        # };
+
+        settings = {
+          before_init = ''
+            # Lua
+              function(_, config)
+              end,
+          '';
+          # cmd = ["./bin/golangci-lint"];
+        };
+      };
       terraformls = {
         enable = true;
       };

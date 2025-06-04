@@ -68,6 +68,7 @@
           __unkeyed-2 = "nixfmt";
           stop_after_first = true;
         };
+        go = ["goimports" "gofmt"];
         c = ["clang-format"];
 
         json = "fixjson";

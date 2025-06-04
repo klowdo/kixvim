@@ -23,6 +23,7 @@
       #ruby = ["ruby"];
       #terraform = ["tflint"];
       #text = ["vale"];
+      go = ["golangcilint"];
     };
 
     # Create autocommand which carries out the actual linting
