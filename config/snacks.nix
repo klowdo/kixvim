@@ -50,6 +50,7 @@
     };
   };
   plugins.noice.enable = true;
+  plugins.noice.settings.lsp.hover.enabled = true;
 
   ## For snacks.Image
   extraLuaPackages = ps: [ps.magick];
