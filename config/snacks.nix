@@ -58,7 +58,11 @@
     enable = true;
     package = self.packages.${system}.snacks-nvim;
     settings = {
-      bigfile = {enabled = true;};
+      bigfile = {
+        enabled = true;
+        notify = true;
+        size = 1024 * 100; # 100kb
+      };
       # dashboard = {enabled = true;};
       indent = {enabled = true;};
       input = {enabled = true;};
