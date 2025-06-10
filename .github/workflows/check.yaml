@@ -32,6 +32,6 @@ jobs:
         uses: DeterminateSystems/flake-checker-action@v9
 
       - name: Commit
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Auto lint/format
