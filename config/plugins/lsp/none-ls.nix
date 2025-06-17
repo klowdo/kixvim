@@ -1,7 +1,7 @@
 {
   plugins.none-ls = {
     enable = true;
-    enableLspFormat = true;
+    # enableLspFormat = true;
     settings = {
       updateInInsert = false;
     };
@@ -13,29 +13,38 @@
       diagnostics = {
         statix.enable = true;
         yamllint.enable = true;
+        # golangci_lint = {
+        #   enable = true;
+        #   settings = {};
+        # cmd = ["golangci-lint-langserver"];
+        # root_dir = ''
+        #    #Lua
+        #   lspconfig.util.root_pattern("go.mod", ".git")';
+        # '';
+        # };
       };
-      formatting = {
-        nixpkgs_fmt.enable = true;
-        black = {
-          enable = true;
-          settings = ''
-            {
-              extra_args = { "--fast" },
-            }
-          '';
-        };
-        prettier = {
-          enable = true;
-          disableTsServerFormatter = true;
-          settings = ''
-            {
-              extra_args = { "--no-semi", "--single-quote" },
-            }
-          '';
-        };
-        stylua.enable = true;
-        yamlfmt.enable = true;
-      };
+      # formatting = {
+      #   nixpkgs_fmt.enable = true;
+      #   black = {
+      #     enable = true;
+      #     settings = ''
+      #       {
+      #         extra_args = { "--fast" },
+      #       }
+      #     '';
+      #   };
+      #   prettier = {
+      #     enable = true;
+      #     disableTsServerFormatter = true;
+      #     settings = ''
+      #       {
+      #         extra_args = { "--no-semi", "--single-quote" },
+      #       }
+      #     '';
+      #   };
+      #   stylua.enable = true;
+      #   yamlfmt.enable = true;
+      # };
     };
   };
   keymaps = [
