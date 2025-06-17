@@ -103,6 +103,18 @@
       };
       gopls = {
         enable = true;
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true;
+              shadow = true;
+            };
+            staticcheck = true;
+            gofumpt = true;
+            # This tells gopls to use golangci-lint
+            "ui.diagnostic.staticcheck" = true;
+          };
+        };
       };
 
       golangci_lint_ls = {
@@ -111,13 +123,13 @@
         # extraOptions = {
         # };
         # filetypes = ["go" "gomod"];
-        extraOptions = {
-          init_options = {
-            command = ["golangci-lint" "run" "--out-format" "json"];
-            # whitelist = ["go"];
-            # "--out-format json";
-          };
-        };
+        # extraOptions = {
+        #   init_options = {
+        #     command = ["golangci-lint" "run" "--out-format" "json"];
+        #     # whitelist = ["go"];
+        #     # "--out-format json";
+        #   };
+        # };
 
         # init_options = {
         #   command = ["./bin/golangci-lint" "run" "--out-format json" "-issues-exit-code=1"];
@@ -125,14 +137,14 @@
         #   # "--out-format json";
         # };
 
-        settings = {
-          before_init = ''
-            # Lua
-              function(_, config)
-              end,
-          '';
-          # cmd = ["./bin/golangci-lint"];
-        };
+        # settings = {
+        #   before_init = ''
+        #     # Lua
+        #       function(_, config)
+        #       end,
+        #   '';
+        #   # cmd = ["./bin/golangci-lint"];
+        # };
       };
       terraformls = {
         enable = true;
