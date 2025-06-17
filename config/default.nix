@@ -24,6 +24,7 @@
     ./plugins/remote-nvim.nix
     ./plugins/remote-sshfs.nix
     ./plugins/spectre.nix
+    ./plugins/golangci-lint.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
