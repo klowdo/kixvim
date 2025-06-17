@@ -7,6 +7,7 @@
     ./keys.nix
     ./auto.nix
     ./lazy-loader.nix
+    ./toggle-darkmode.nix
     # Plugins
     ./plugins/gitsigns.nix
     ./plugins/which-key.nix
