@@ -16,22 +16,22 @@
     }
     {
       mode = "n";
-      key = "<C-j>";
+      key = "<leader>hj";
       action.__raw = "function() require'harpoon':list():select(1) end";
     }
     {
       mode = "n";
-      key = "<C-k>";
+      key = "<leader>hk";
       action.__raw = "function() require'harpoon':list():select(2) end";
     }
     {
       mode = "n";
-      key = "<C-l>";
+      key = "<leader>hl";
       action.__raw = "function() require'harpoon':list():select(3) end";
     }
     {
       mode = "n";
-      key = "<C-m>";
+      key = "<leader>hm";
       action.__raw = "function() require'harpoon':list():select(4) end";
     }
   ];
