@@ -1,6 +1,6 @@
 {
   imports = [
-    ./image.nix
+    # ./image.nix
     ./clipboard-image.nix
   ];
 }
