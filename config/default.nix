@@ -28,6 +28,7 @@
     ./plugins/overseer.nix
     ./plugins/vim-go.nix
     ./plugins/claude-code.nix
+    ./plugins/diagram.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
