@@ -27,6 +27,7 @@
     ./plugins/golangci-lint.nix
     ./plugins/overseer.nix
     ./plugins/vim-go.nix
+    ./plugins/claude-code.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
