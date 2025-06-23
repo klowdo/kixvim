@@ -16,10 +16,10 @@
   dependencies.claude-code = {
     enable = true;
     package = pkgs.claude-code.overrideAttrs (oldAttrs: rec {
-      version = "1.0.25";
+      version = "1.0.30";
       src = pkgs.fetchzip {
         url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-        hash = "sha256-Khd1S/8zNQy6It4XcfJQmmLs1IDyoCd+ZxPBHuacjkw=";
+        hash = "sha256-DwzSXpDrNV8FhfqrRQ3OK/LjmiXd+VHEW91jnyds2P4=";
       };
       npmDepsHash = "sha256-Khd1S/8zNQy6It4XcfJQmmLs1IDyoCd+ZxPBHuacjkw=";
     });
