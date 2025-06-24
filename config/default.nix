@@ -48,7 +48,7 @@
     # ./plugins/custom/plugins/lazygit.nix
     # ./plugins/custom/plugins/toggleterm.nix
     # ./plugins/custom/plugins/oil.nix
-    # ./plugins/custom/plugins/tmux-navigator.nix
+    ./plugins/custom/plugins/tmux-navigator.nix
     # ./plugins/custom/plugins/snacks.nix
     # NOTE: Not needed stops here
     ./plugins/custom/plugins/harpoon.nix
