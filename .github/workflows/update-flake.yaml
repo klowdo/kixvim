@@ -20,8 +20,8 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v25
-        with:
-          pr-labels: |
-            dependencies
-            automated
-            merge-queue
+        # with:
+        #   pr-labels: |
+        #     dependencies
+        #     automated
+        #     merge-queue
