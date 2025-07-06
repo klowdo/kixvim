@@ -152,6 +152,9 @@
       bashls = {
         enable = true;
       };
+      gitlab_ci_ls = {
+        enable = true;
+      };
       jsonls = {
         enable = true;
       };
