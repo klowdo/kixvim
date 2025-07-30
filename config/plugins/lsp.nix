@@ -159,6 +159,10 @@
         enable = true;
       };
 
+      protols = {
+        enable = true;
+      };
+
       ts_ls = {
         enable = true;
       };
