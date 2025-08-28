@@ -52,6 +52,17 @@
 
       completion = {
         completeopt = "menu,menuone,noinsert";
+        # Trigger completion automatically after typing 1 character
+        keyword_length = 1;
+      };
+
+      performance = {
+        # Increase debounce time for better responsiveness
+        debounce = 60;
+        # Increase throttle time
+        throttle = 30;
+        # Increase max item count for better performance
+        max_item_count = 200;
       };
 
       # For an understanding of why these mappings were
@@ -113,24 +124,33 @@
       # If you use a raw lua string, you will need to explicitly enable the relevant source
       # plugins in your nixvim configuration.
       sources = [
-        {
-          name = "copilot";
-          group_index = 2;
-        }
-        {
-          name = "luasnip";
-        }
-        # Adds other completion capabilites.
-        #  nvim-cmp does not ship with all sources by default. They are split
-        #  into multiple repos for maintenance purposes.
+        # LSP suggestions come first (highest priority)
         {
           name = "nvim_lsp";
+          priority = 1000;
+          group_index = 1;
+        }
+        # Copilot in separate group, shown after LSP
+        {
+          name = "copilot";
+          priority = 800;
+          group_index = 2;
+        }
+        # Snippets and other sources come after
+        {
+          name = "luasnip";
+          priority = 750;
+          group_index = 3;
         }
         {
           name = "path";
+          priority = 500;
+          group_index = 3;
         }
         {
           name = "neorg";
+          priority = 400;
+          group_index = 3;
         }
       ];
     };
