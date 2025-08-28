@@ -16,6 +16,9 @@
   plugins.cmp-path = {
     enable = true;
   };
+  plugins.copilot-cmp = {
+    enable = true;
+  };
 
   # `friendly-snippets` contains a variety of premade snippets
   #    See the README about individual language/framework/plugin snippets:
@@ -110,6 +113,10 @@
       # If you use a raw lua string, you will need to explicitly enable the relevant source
       # plugins in your nixvim configuration.
       sources = [
+        {
+          name = "copilot";
+          group_index = 2;
+        }
         {
           name = "luasnip";
         }
