@@ -117,7 +117,7 @@
       defaults = {
         # Follow symbolic links
         follow = true;
-        # Respect gitignore
+        # Respect gitignore but include hidden files, exclude common dev directories
         vimgrep_arguments = [
           "rg"
           "--color=never"
@@ -128,19 +128,93 @@
           "--smart-case"
           "--hidden"
           "--glob=!.git/"
+          "--glob=!.direnv/"
+          "--glob=!node_modules/"
+          "--glob=!.cache/"
+          "--glob=!.npm/"
+          "--glob=!.yarn/"
+          "--glob=!.pnpm-store/"
+          "--glob=!target/"
+          "--glob=!dist/"
+          "--glob=!build/"
+          "--glob=!.next/"
+          "--glob=!.nuxt/"
+          "--glob=!.vscode/"
         ];
       };
       pickers = {
         find_files = {
           hidden = true;
-          # Respect gitignore but show hidden files
-          find_command = ["fd" "--type" "f" "--hidden" "--follow" "--exclude" ".git"];
+          # Include hidden files but exclude common dev directories
+          find_command = [
+            "fd"
+            "--type"
+            "f"
+            "--hidden"
+            "--follow"
+            "--exclude"
+            ".git"
+            "--exclude"
+            ".direnv"
+            "--exclude"
+            "node_modules"
+            "--exclude"
+            ".cache"
+            "--exclude"
+            ".npm"
+            "--exclude"
+            ".yarn"
+            "--exclude"
+            ".pnpm-store"
+            "--exclude"
+            "target"
+            "--exclude"
+            "dist"
+            "--exclude"
+            "build"
+            "--exclude"
+            ".next"
+            "--exclude"
+            ".nuxt"
+            "--exclude"
+            ".vscode"
+          ];
         };
         live_grep = {
-          additional_args = ["--hidden" "--glob=!.git/"];
+          additional_args = [
+            "--hidden"
+            "--glob=!.git/"
+            "--glob=!.direnv/"
+            "--glob=!node_modules/"
+            "--glob=!.cache/"
+            "--glob=!.npm/"
+            "--glob=!.yarn/"
+            "--glob=!.pnpm-store/"
+            "--glob=!target/"
+            "--glob=!dist/"
+            "--glob=!build/"
+            "--glob=!.next/"
+            "--glob=!.nuxt/"
+            "--glob=!.vscode/"
+          ];
         };
         grep_string = {
-          additional_args = ["--hidden" "--glob=!.git/"];
+          additional_args = [
+            "--hidden"
+            "--glob=!.git/"
+            "--glob=!.direnv/"
+            "--glob=!node_modules/"
+            "--glob=!.cache/"
+            "--glob=!.npm/"
+            "--glob=!.yarn/"
+            "--glob=!.pnpm-store/"
+            "--glob=!target/"
+            "--glob=!dist/"
+            "--glob=!build/"
+            "--glob=!.next/"
+            "--glob=!.nuxt/"
+            "--glob=!.vscode/"
+          ];
         };
         git_files = {
           # Already respects git root by nature
@@ -169,16 +243,41 @@
         path_display = { "truncate" },
         file_ignore_patterns = {
           "%.git/",
+          "%.direnv/",
           "node_modules/",
+          "%.cache/",
+          "%.npm/",
+          "%.yarn/",
+          "%.pnpm%-store/",
+          "target/",
+          "dist/",
+          "build/",
+          "%.next/",
+          "%.nuxt/",
+          "%.vscode/",
           "%.pytest_cache/",
           "__pycache__/",
-          "%.cache/",
         },
       },
       pickers = {
         find_files = {
           cwd = get_git_root(),
-          find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
+          find_command = {
+            "fd", "--type", "f", "--hidden", "--follow",
+            "--exclude", ".git",
+            "--exclude", ".direnv",
+            "--exclude", "node_modules",
+            "--exclude", ".cache",
+            "--exclude", ".npm",
+            "--exclude", ".yarn",
+            "--exclude", ".pnpm-store",
+            "--exclude", "target",
+            "--exclude", "dist",
+            "--exclude", "build",
+            "--exclude", ".next",
+            "--exclude", ".nuxt",
+            "--exclude", ".vscode"
+          },
         },
         live_grep = {
           cwd = get_git_root(),
