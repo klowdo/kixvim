@@ -153,7 +153,7 @@
             "--hidden"
             "--follow"
             "--exclude"
-            ".git"
+            ".git/"
             "--exclude"
             ".direnv"
             "--exclude"
@@ -264,7 +264,7 @@
           cwd = get_git_root(),
           find_command = {
             "fd", "--type", "f", "--hidden", "--follow",
-            "--exclude", ".git",
+            "--exclude", ".git/",
             "--exclude", ".direnv",
             "--exclude", "node_modules",
             "--exclude", ".cache",
