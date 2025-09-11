@@ -1,2 +1,0 @@
-- [] auto-save
-- vim-tmux

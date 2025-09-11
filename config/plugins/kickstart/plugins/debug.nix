@@ -48,6 +48,19 @@
     # Add your own debuggers here
     dap-go = {
       enable = true;
+      # Configure dap-go for remote debugging support
+      settings = {
+        dap_configurations = [
+          {
+            type = "go";
+            name = "Attach to remote (port 40000)";
+            mode = "remote";
+            request = "attach";
+            port = 40000;
+            host = "127.0.0.1";
+          }
+        ];
+      };
     };
 
     ## C  provide C, C++, and Rust debugging support.
@@ -144,6 +157,23 @@
         desc = "Debug: See last session result.";
       };
     }
+    # DAP remote Go debugging keymaps
+    {
+      mode = "n";
+      key = "<leader>ddr";
+      action = "<cmd>DapGoRemote<CR>";
+      options = {
+        desc = "Debug: Attach to remote Go process (DAP)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ddd";
+      action = "<cmd>DapGoRemoteDefault<CR>";
+      options = {
+        desc = "Debug: Attach to remote Go at :40000 (DAP)";
+      };
+    }
   ];
 
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraconfiglua#extraconfiglua
@@ -151,5 +181,53 @@
     require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
     require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
     require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+
+    -- Custom command for DAP remote Go debugging
+    vim.api.nvim_create_user_command('DapGoRemote', function(opts)
+      local host = "127.0.0.1"
+      local port = 40000
+
+      -- Parse arguments if provided (format: host:port or just port)
+      if opts.args ~= "" then
+        local args = opts.args
+        if args:match(":") then
+          host, port = args:match("([^:]+):(%d+)")
+          port = tonumber(port)
+        else
+          port = tonumber(args) or 40000
+        end
+      end
+
+      local dap = require("dap")
+      dap.run({
+        type = "go",
+        name = "Attach to remote Go process",
+        mode = "remote",
+        request = "attach",
+        host = host,
+        port = port,
+      })
+
+      print("Connecting to Go debugger at " .. host .. ":" .. port)
+    end, {
+      nargs = "?",
+      desc = "Connect to remote Go debugger via DAP (default: 127.0.0.1:40000)"
+    })
+
+    -- Quick command for connecting to default remote debugger
+    vim.api.nvim_create_user_command("DapGoRemoteDefault", function()
+      local dap = require("dap")
+      dap.run({
+        type = "go",
+        name = "Attach to remote Go process (40000)",
+        mode = "remote",
+        request = "attach",
+        host = "127.0.0.1",
+        port = 40000,
+      })
+      print("Connecting to Go debugger at 127.0.0.1:40000")
+    end, {
+      desc = "Connect to remote Go debugger at default address (127.0.0.1:40000)"
+    })
   '';
 }

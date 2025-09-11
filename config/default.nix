@@ -2,7 +2,7 @@
   # Import all your configuration modules here
   imports = [
     # ./bufferline.nix
-    ./vim-tmux.nix
+    # ./vim-tmux.nix  # Disabled - using plugins/custom/plugins/tmux-navigator.nix instead
     ./snacks.nix
     ./keys.nix
     ./auto.nix
@@ -28,7 +28,7 @@
     ./plugins/overseer.nix
     ./plugins/vim-go.nix
     ./plugins/claude-code.nix
-    ./plugins/diagram.nix
+    # ./plugins/diagram.nix  # Temporarily disabled due to terminal size error
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
@@ -49,6 +49,7 @@
     # ./plugins/custom/plugins/toggleterm.nix
     # ./plugins/custom/plugins/oil.nix
     ./plugins/custom/plugins/tmux-navigator.nix
+    ./plugins/custom/plugins/git-root.nix
     # ./plugins/custom/plugins/snacks.nix
     # NOTE: Not needed stops here
     ./plugins/custom/plugins/harpoon.nix

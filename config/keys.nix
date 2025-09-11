@@ -81,5 +81,130 @@
         desc = "Move focus to the upper window";
       };
     }
+    # Toggle diagnostics display modes
+    {
+      mode = "n";
+      key = "<leader>td";
+      action.__raw = ''
+        function()
+          local current_state = vim.diagnostic.config().virtual_text
+          if current_state then
+            -- If virtual_text is on, switch to virtual_lines
+            vim.diagnostic.config({
+              virtual_text = false,
+              virtual_lines = true,
+            })
+            require('lsp_lines').toggle()
+            vim.notify("Diagnostics: Virtual Lines", vim.log.levels.INFO)
+          elseif vim.diagnostic.config().virtual_lines then
+            -- If virtual_lines is on, switch to signs only
+            vim.diagnostic.config({
+              virtual_text = false,
+              virtual_lines = false,
+            })
+            require('lsp_lines').toggle()
+            vim.notify("Diagnostics: Signs Only", vim.log.levels.INFO)
+          else
+            -- If both are off, switch back to virtual_text
+            vim.diagnostic.config({
+              virtual_text = {
+                severity = { min = vim.diagnostic.severity.WARN },
+                source = "if_many",
+              },
+              virtual_lines = false,
+            })
+            vim.notify("Diagnostics: Virtual Text", vim.log.levels.INFO)
+          end
+        end
+      '';
+      options = {
+        desc = "Toggle diagnostics display mode (virtual text/lines/signs)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>tD";
+      action.__raw = ''
+        function()
+          if vim.diagnostic.is_enabled() then
+            vim.diagnostic.enable(false)
+            vim.notify("Diagnostics: Disabled", vim.log.levels.INFO)
+          else
+            vim.diagnostic.enable(true)
+            vim.notify("Diagnostics: Enabled", vim.log.levels.INFO)
+          end
+        end
+      '';
+      options = {
+        desc = "Toggle diagnostics on/off completely";
+      };
+    }
+    # Git root directory control
+    {
+      mode = "n";
+      key = "<leader>cd";
+      action.__raw = ''
+        function()
+          -- Change to git root directory
+          local git_root = vim.fs.root(0, {".git", "_darcs", ".hg", ".bzr", ".svn"})
+          if git_root then
+            vim.cmd("cd " .. git_root)
+            vim.notify("Changed to git root: " .. git_root, vim.log.levels.INFO)
+          else
+            vim.notify("No git repository found", vim.log.levels.WARN)
+          end
+        end
+      '';
+      options = {
+        desc = "[C]hange to git root [D]irectory";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>cD";
+      action.__raw = ''
+        function()
+          -- Show current directory vs git root
+          local current_dir = vim.fn.getcwd()
+          local git_root = vim.fs.root(0, {".git", "_darcs", ".hg", ".bzr", ".svn"})
+
+          if git_root then
+            local current_relative = vim.fn.fnamemodify(current_dir, ":~")
+            local git_relative = vim.fn.fnamemodify(git_root, ":~")
+
+            if git_root == current_dir then
+              vim.notify("✓ At git root: " .. git_relative, vim.log.levels.INFO)
+            else
+              vim.notify("Git root: " .. git_relative .. "\nCurrent: " .. current_relative, vim.log.levels.WARN)
+            end
+          else
+            vim.notify("No git repository found\nCurrent: " .. vim.fn.fnamemodify(current_dir, ":~"), vim.log.levels.WARN)
+          end
+        end
+      '';
+      options = {
+        desc = "Show [C]urrent vs git root [D]irectory status";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>cp";
+      action.__raw = ''
+        function()
+          -- Change to parent directory of current file
+          local current_file = vim.api.nvim_buf_get_name(0)
+          if current_file ~= "" then
+            local file_dir = vim.fn.fnamemodify(current_file, ":p:h")
+            vim.cmd("cd " .. file_dir)
+            vim.notify("Changed to file directory: " .. vim.fn.fnamemodify(file_dir, ":~"), vim.log.levels.INFO)
+          else
+            vim.notify("No file in current buffer", vim.log.levels.WARN)
+          end
+        end
+      '';
+      options = {
+        desc = "[C]hange to current file's [P]arent directory";
+      };
+    }
   ];
 }

@@ -114,8 +114,81 @@
     };
     settings = {
       extensions.__raw = "{ ['ui-select'] = { require('telescope.themes').get_dropdown() } }";
+      defaults = {
+        # Follow symbolic links
+        follow = true;
+        # Respect gitignore
+        vimgrep_arguments = [
+          "rg"
+          "--color=never"
+          "--no-heading"
+          "--with-filename"
+          "--line-number"
+          "--column"
+          "--smart-case"
+          "--hidden"
+          "--glob=!.git/"
+        ];
+      };
+      pickers = {
+        find_files = {
+          hidden = true;
+          # Respect gitignore but show hidden files
+          find_command = ["fd" "--type" "f" "--hidden" "--follow" "--exclude" ".git"];
+        };
+        live_grep = {
+          additional_args = ["--hidden" "--glob=!.git/"];
+        };
+        grep_string = {
+          additional_args = ["--hidden" "--glob=!.git/"];
+        };
+        git_files = {
+          # Already respects git root by nature
+          show_untracked = true;
+        };
+      };
     };
   };
+
+  # Configure telescope to use git root
+  extraConfigLua = ''
+    -- Function to get git root or fallback to current directory
+    local function get_git_root()
+      local git_root = vim.fs.root(0, {".git", "_darcs", ".hg", ".bzr", ".svn"})
+      return git_root or vim.fn.getcwd()
+    end
+
+    -- Override default telescope configuration to use git root as default cwd
+    local telescope = require('telescope')
+    local actions = require('telescope.actions')
+
+    telescope.setup({
+      defaults = {
+        -- Set default search path to git root
+        cwd = get_git_root(),
+        path_display = { "truncate" },
+        file_ignore_patterns = {
+          "%.git/",
+          "node_modules/",
+          "%.pytest_cache/",
+          "__pycache__/",
+          "%.cache/",
+        },
+      },
+      pickers = {
+        find_files = {
+          cwd = get_git_root(),
+          find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
+        },
+        live_grep = {
+          cwd = get_git_root(),
+        },
+        grep_string = {
+          cwd = get_git_root(),
+        },
+      },
+    })
+  '';
 
   # # https://nix-community.github.io/nixvim/keymaps/index.html
   # keymaps = [

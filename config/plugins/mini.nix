@@ -73,10 +73,21 @@
              else
                -- For regular files, use the buffer's file path
                local buf_name = vim.api.nvim_buf_get_name(0)
-               -- If buffer has no name (empty buffer), use cwd
-               if buf_name == "" then
-                 return vim.fn.getcwd()
+
+               -- If buffer has no name (empty buffer) or file doesn't exist, fall back
+               if buf_name == "" or not vim.fn.filereadable(buf_name) == 1 then
+                 -- Try to find git root, otherwise use cwd
+                 local git_root = vim.fs.root(vim.fn.getcwd(), ".git")
+                 return git_root or vim.fn.getcwd()
                end
+
+               -- Check if the file actually exists
+               if vim.fn.filereadable(buf_name) == 0 then
+                 -- File doesn't exist, find git root from current working directory
+                 local git_root = vim.fs.root(vim.fn.getcwd(), ".git")
+                 return git_root or vim.fn.getcwd()
+               end
+
                return buf_name
              end
            end

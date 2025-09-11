@@ -20,6 +20,57 @@
     };
   };
 
-  # Set session options to include terminal for proper recovery
+  # Set session options to include terminal and current directory for proper recovery
   opts.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
+
+  # Additional configuration for git root preservation
+  extraConfigLua = ''
+    -- Function to get git root for session management
+    local function get_session_git_root()
+      local git_root = vim.fs.root(0, {".git", "_darcs", ".hg", ".bzr", ".svn"})
+      return git_root or vim.fn.getcwd()
+    end
+
+    -- Enhanced session handling with git root awareness
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AutoSessionSavePre",
+      callback = function()
+        -- Ensure we're in the correct directory before saving session
+        local git_root = get_session_git_root()
+        if git_root ~= vim.fn.getcwd() then
+          vim.cmd("cd " .. git_root)
+        end
+
+        -- Store the git root in a global variable for restoration
+        vim.g.session_git_root = git_root
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AutoSessionRestorePost",
+      callback = function()
+        -- Restore to git root after session load
+        local git_root = vim.g.session_git_root or get_session_git_root()
+
+        -- Change to git root if we're not already there
+        if git_root ~= vim.fn.getcwd() then
+          vim.cmd("cd " .. git_root)
+        end
+
+        -- Clean up the global variable
+        vim.g.session_git_root = nil
+      end,
+    })
+
+    -- Auto-save session when leaving directories
+    vim.api.nvim_create_autocmd("DirChanged", {
+      callback = function()
+        -- Auto-save current session before changing directories
+        if vim.fn.argc() > 0 then  -- Only if files were opened
+          local session_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+          pcall(vim.cmd, "SessionSave " .. session_name)
+        end
+      end,
+    })
+  '';
 }
