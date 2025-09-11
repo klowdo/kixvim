@@ -1,3 +1,4 @@
+---
 name: "Update flakes"
 permissions:
   contents: write
@@ -21,7 +22,7 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v26
         with:
-          pr-labels: |
+          pr-labels: |-
             dependencies
             automated
             merge-queue
