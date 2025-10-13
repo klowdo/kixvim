@@ -188,6 +188,11 @@
       yamlls = {
         enable = true;
       };
+
+      templ = {
+        enable = true;
+      };
+
       # pyright = {
       #  enable = true;
       #}
