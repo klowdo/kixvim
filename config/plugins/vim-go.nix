@@ -10,6 +10,8 @@
 
     # Enable additional vim-go features
     go_fmt_command = "goimports";
+    # Disable automatic formatting on save - use manual formatting instead
+    go_fmt_autosave = 0;
     go_auto_type_info = 1;
     go_highlight_types = 1;
     go_highlight_fields = 1;
