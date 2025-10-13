@@ -10,6 +10,7 @@
     clang-tools
     shfmt
     fixjson
+    buf
   ];
 
   # Autoformat
@@ -71,7 +72,8 @@
         go = ["golangci-lint"];
         c = ["clang-format"];
 
-        json = "fixjson";
+        json = ["fixjson"];
+        proto = ["buf"];
 
         "_" = {
           __unkeyed-1 = "squeeze_blanks";

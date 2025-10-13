@@ -169,6 +169,11 @@
 
       protols = {
         enable = true;
+        settings = {
+          include_paths = [
+            "${pkgs.protobuf}/include"
+          ];
+        };
       };
 
       ts_ls = {
