@@ -14,6 +14,7 @@
     ./plugins/telescope.nix
     ./plugins/conform.nix
     ./plugins/lsp.nix
+    ./plugins/copilot.nix
     ./plugins/nvim-cmp.nix
     ./plugins/mini.nix
     ./plugins/treesitter.nix
@@ -190,6 +191,16 @@
   # The line beneath this is called `modeline`. See `:help modeline`
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraconfigluapost
   extraConfigLuaPost = ''
+    -- Suppress Copilot limit notifications
+    vim.notify = (function(orig_notify)
+      return function(msg, level, opts)
+        if type(msg) == "string" and msg:match("Copilot") and msg:match("limit") then
+          return
+        end
+        return orig_notify(msg, level, opts)
+      end
+    end)(vim.notify)
+
     -- vim: ts=2 sts=2 sw=2 et
   '';
 
