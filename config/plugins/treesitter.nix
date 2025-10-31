@@ -104,15 +104,17 @@
     treesitter-refactor = {
       inherit (config.plugins.treesitter) enable;
 
-      highlightDefinitions = {
-        enable = true;
-        clearOnCursorMove = true;
-      };
-      smartRename = {
-        enable = true;
-      };
-      navigation = {
-        enable = true;
+      settings = {
+        highlight_definitions = {
+          enable = true;
+          clear_on_cursor_move = true;
+        };
+        smart_rename = {
+          enable = true;
+        };
+        navigation = {
+          enable = true;
+        };
       };
     };
   };
