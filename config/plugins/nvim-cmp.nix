@@ -17,7 +17,7 @@
     enable = true;
   };
   plugins.copilot-cmp = {
-    enable = true;
+    enable = false;
   };
 
   # `friendly-snippets` contains a variety of premade snippets
@@ -131,11 +131,11 @@
           group_index = 1;
         }
         # Copilot in separate group, shown after LSP
-        {
-          name = "copilot";
-          priority = 800;
-          group_index = 2;
-        }
+        # {
+        #   name = "copilot";
+        #   priority = 800;
+        #   group_index = 2;
+        # }
         # Snippets and other sources come after
         {
           name = "luasnip";

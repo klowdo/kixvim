@@ -167,13 +167,16 @@
         enable = true;
       };
 
-      protols = {
+      # protols = {
+      #   enable = true;
+      #   settings = {
+      #     include_paths = [
+      #       "${pkgs.protobuf}/include"
+      #     ];
+      #   };
+      # };
+      buf_ls = {
         enable = true;
-        settings = {
-          include_paths = [
-            "${pkgs.protobuf}/include"
-          ];
-        };
       };
 
       ts_ls = {
