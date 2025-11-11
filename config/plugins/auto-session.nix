@@ -13,9 +13,18 @@
         "lua for _, win in ipairs(vim.api.nvim_list_wins()) do local config = vim.api.nvim_win_get_config(win); if config.relative ~= '' then vim.api.nvim_win_close(win, false) end end"
       ];
 
+      # Disable vim-dadbod auto-completion during session restore to prevent DB connection errors
+      pre_restore_cmds = [
+        "let g:db_ui_auto_execute_table_helpers = 0"
+        "let g:vim_dadbod_completion_skip_fetch = 1"
+      ];
+
       post_restore_cmds = [
         # Restore terminal functionality after session load
         "lua vim.defer_fn(function() for _, buf in ipairs(vim.api.nvim_list_bufs()) do if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == 'terminal' then vim.api.nvim_buf_call(buf, function() vim.cmd('startinsert') vim.cmd('stopinsert') end) end end end, 100)"
+        # Re-enable vim-dadbod completion after session restore
+        "let g:db_ui_auto_execute_table_helpers = 1"
+        "let g:vim_dadbod_completion_skip_fetch = 0"
       ];
     };
   };
