@@ -16,6 +16,14 @@
       url = "github:folke/trouble.nvim";
       flake = false;
     };
+    go-nvim = {
+      url = "github:ray-x/go.nvim";
+      flake = false;
+    };
+    guihua-lua = {
+      url = "github:ray-x/guihua.lua";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -94,6 +102,11 @@
         homeModules.nixvim = {...}: {
           imports = [nixvim.homeManagerModules.nixvim];
           programs.nixvim = import ./config;
+        };
+
+        # Expose custom packages as overlay
+        overlays.default = final: prev: {
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua;
         };
       };
     };
