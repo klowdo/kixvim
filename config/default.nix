@@ -54,7 +54,7 @@
     # ./plugins/custom/plugins/snacks.nix
     # NOTE: Not needed stops here
     ./plugins/custom/plugins/harpoon.nix
-    ./plugins/custom/plugins/dadbod.nix
+    # ./plugins/custom/plugins/dadbod.nix
     ./plugins/custom/plugins/neorg.nix
     ./plugins/custom/plugins/persistence.nix
     ./plugins/custom/plugins/obsidian.nix
