@@ -34,5 +34,11 @@ vimUtils.buildVimPlugin {
     "snacks.image.image"
     "snacks.image.convert"
     "snacks.explorer.init"
+    "snacks.gh.init"
+    "snacks.gh.buf"
+    "snacks.gh.render.init"
+    "snacks.gh.actions"
+    "snacks.picker.source.gh"
+    "snacks.picker.util.diff"
   ];
 }
