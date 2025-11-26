@@ -24,6 +24,10 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
+    qalc-nvim = {
+      url = "github:Apeiros-46B/qalc.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -106,7 +110,7 @@
 
         # Expose custom packages as overlay
         overlays.default = final: prev: {
-          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua;
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim;
         };
       };
     };

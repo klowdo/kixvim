@@ -58,6 +58,7 @@
     ./plugins/custom/plugins/neorg.nix
     ./plugins/custom/plugins/persistence.nix
     ./plugins/custom/plugins/obsidian.nix
+    ./plugins/custom/plugins/qalc.nix
     ./plugins/custom/plugins/default.nix
 
     #NOTE: a bit annoying.. maybe a kebinging to toggle

@@ -296,6 +296,22 @@
         "type": "github"
       }
     },
+    "qalc-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741498416,
+        "narHash": "sha256-Qb254SyjhT4ao1BJ2r152Ca2B8IHikvnnO+9MQFj0vI=",
+        "owner": "Apeiros-46B",
+        "repo": "qalc.nvim",
+        "rev": "7697cff543b7089c858f3b26a013c1eb52fe86fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Apeiros-46B",
+        "repo": "qalc.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -305,6 +321,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "qalc-nvim": "qalc-nvim",
         "snacks-nvim": "snacks-nvim",
         "trouble-nvim": "trouble-nvim"
       }
