@@ -142,7 +142,7 @@
     # Git root directory control
     {
       mode = "n";
-      key = "<leader>cd";
+      key = "<leader>cg";
       action.__raw = ''
         function()
           -- Change to git root directory
@@ -156,7 +156,7 @@
         end
       '';
       options = {
-        desc = "[C]hange to git root [D]irectory";
+        desc = "[C]hange to [G]it root directory";
       };
     }
     {

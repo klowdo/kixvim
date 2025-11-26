@@ -314,10 +314,9 @@
       options = {desc = "Goto Declaration";};
     }
     {
-      key = "gr";
+      key = "<leader>gr";
       action = "<CMD>lua Snacks.picker.lsp_references() <CR>";
       options = {
-        nowait = true;
         desc = "References";
       };
     }

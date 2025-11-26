@@ -19,6 +19,9 @@
         go
         gosum
         gomod
+        gowork
+        sql
+        comment
         diff
         html
         bash

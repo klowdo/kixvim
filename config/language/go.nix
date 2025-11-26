@@ -172,10 +172,10 @@
     }
     {
       mode = "n";
-      key = "<leader>grt";
+      key = "<leader>gdt";
       action = "<cmd>GoRmTag<CR>";
       options = {
-        desc = "Go: Remove tags";
+        desc = "Go: Delete/remove tags";
       };
     }
 
@@ -200,7 +200,7 @@
     }
     {
       mode = "n";
-      key = "<leader>gr";
+      key = "<leader>gR";
       action = "<cmd>GoRun<CR>";
       options = {
         desc = "Go: Run";

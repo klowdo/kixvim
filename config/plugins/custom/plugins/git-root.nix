@@ -80,24 +80,24 @@
     })
   '';
 
-  keymaps = [
-    {
-      mode = "n";
-      key = "<leader>cr";
-      action = "<cmd>lua ChangeToGitRoot()<cr>";
-      options = {
-        desc = "[C]hange to git [R]oot";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>cR";
-      action = "<cmd>lua ShowGitRoot()<cr>";
-      options = {
-        desc = "Show git [R]oot status";
-        silent = true;
-      };
-    }
-  ];
+  # keymaps = [
+  #   {
+  #     mode = "n";
+  #     key = "<leader>cr";
+  #     action = "<cmd>lua ChangeToGitRoot()<cr>";
+  #     options = {
+  #       desc = "[C]hange to git [R]oot";
+  #       silent = true;
+  #     };
+  #   }
+  #   {
+  #     mode = "n";
+  #     key = "<leader>cR";
+  #     action = "<cmd>lua ShowGitRoot()<cr>";
+  #     options = {
+  #       desc = "Show git [R]oot status";
+  #       silent = true;
+  #     };
+  #   }
+  # ];
 }

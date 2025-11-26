@@ -85,15 +85,16 @@
         silent = true;
       };
     }
-    {
-      mode = "n";
-      key = "gr";
-      action = "<cmd>Lspsaga finder ref<CR>";
-      options = {
-        desc = "Goto References";
-        silent = true;
-      };
-    }
+    # NOTE: <leader>gr is handled by Snacks picker (see config/snacks.nix:317)
+    # {
+    #   mode = "n";
+    #   key = "gr";
+    #   action = "<cmd>Lspsaga finder ref<CR>";
+    #   options = {
+    #     desc = "Goto References";
+    #     silent = true;
+    #   };
+    # }
 
     # {
     #   mode = "n";
