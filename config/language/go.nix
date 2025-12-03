@@ -23,7 +23,6 @@
       -- Disable format on save (use conform.nvim instead)
       goimports = 'gopls',
       gofmt = 'gofumpt',
-      max_line_len = 120,
       tag_transform = false,
       tag_options = 'json=omitempty',
 
