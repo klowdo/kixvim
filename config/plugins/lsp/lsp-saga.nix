@@ -146,15 +146,17 @@
       };
     }
 
-    {
-      mode = "n";
-      key = "<leader>cr";
-      action = "<cmd>Lspsaga rename<CR>";
-      options = {
-        desc = "Rename";
-        silent = true;
-      };
-    }
+    # NOTE: Rename is now handled by inc-rename.nvim (see config/plugins/inc-rename.nix)
+    # which provides incremental editing and live preview
+    # {
+    #   mode = "n";
+    #   key = "<leader>cr";
+    #   action = "<cmd>Lspsaga rename<CR>";
+    #   options = {
+    #     desc = "Rename";
+    #     silent = true;
+    #   };
+    # }
 
     {
       mode = "n";

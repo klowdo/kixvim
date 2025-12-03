@@ -13,6 +13,7 @@
     ./plugins/which-key.nix
     ./plugins/telescope.nix
     ./plugins/conform.nix
+    ./plugins/inc-rename.nix
     ./plugins/lsp.nix
     ./plugins/copilot.nix
     ./plugins/nvim-cmp.nix

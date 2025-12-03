@@ -31,10 +31,15 @@
       run_in_floaterm = false,
 
       -- LSP configuration
+      -- lsp_cfg = false means we manage gopls through lspconfig (in lsp.nix)
+      -- go.nvim provides additional Go-specific tooling on top of that
       lsp_cfg = false, -- Use existing LSP configuration from lsp.nix
       lsp_gofumpt = true,
       lsp_on_attach = nil, -- Use default from lsp.nix
       lsp_keymaps = false, -- Use custom keymaps below
+
+      -- Codelens and hints: go.nvim will use gopls codelens/hints from lsp.nix
+      -- These settings control go.nvim's behavior, not gopls itself
       lsp_codelens = true,
       lsp_inlay_hints = {
         enable = true,
@@ -49,14 +54,14 @@
         right_align_padding = 7,
       },
 
-      -- Diagnostic configuration
+      -- Diagnostics: these override lspconfig's diagnostic settings for Go files
       lsp_diag_hdlr = true,
       lsp_diag_underline = true,
       lsp_diag_virtual_text = { space = 0, prefix = '■' },
       lsp_diag_signs = true,
       lsp_diag_update_in_insert = false,
 
-      -- Code lens
+      -- Formatting: disabled here because we use conform.nvim
       lsp_document_formatting = false,
       gopls_cmd = nil, -- Use gopls from PATH
 
@@ -213,6 +218,26 @@
       action = "<cmd>GoDebug<CR>";
       options = {
         desc = "Go: Debug";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gdt";
+      action = "<cmd>GoDebug -t<CR>";
+      options = {
+        desc = "Go: Debug test (current function)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gdT";
+      action.__raw = ''
+        function()
+          require('dap-go').debug_test()
+        end
+      '';
+      options = {
+        desc = "Go: Debug nearest test (dap-go)";
       };
     }
     {

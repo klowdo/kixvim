@@ -116,11 +116,36 @@
             analyses = {
               unusedparams = true;
               shadow = true;
+              # Enable additional analyses for better refactoring
+              nilness = true;
+              unusedwrite = true;
+              useany = true;
             };
             staticcheck = true;
             gofumpt = true;
             # This tells gopls to use golangci-lint
             "ui.diagnostic.staticcheck" = true;
+            # Better semantic tokens for rename preview
+            semanticTokens = true;
+            # Codelens for better context
+            codelenses = {
+              generate = true;
+              regenerate_cgo = true;
+              test = true;
+              tidy = true;
+              upgrade_dependency = true;
+              vendor = true;
+            };
+            # Hints configuration
+            hints = {
+              assignVariableTypes = true;
+              compositeLiteralFields = true;
+              compositeLiteralTypes = true;
+              constantValues = true;
+              functionTypeParameters = true;
+              parameterNames = true;
+              rangeVariableTypes = true;
+            };
           };
         };
       };
@@ -414,6 +439,7 @@
     #   an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
     #   function will be executred to configure the current buffer
     # NOTE: This is an example of an attribute that takes raw lua
+    # Lua
     onAttach = ''
       -- NOTE: Remember that Lua is a real programming language, and as such it is possible
       -- to define small helper and utility functions so you don't have to repeat yourself.
