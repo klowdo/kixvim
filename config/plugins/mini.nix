@@ -342,5 +342,67 @@
            end
          end,
        })
+
+       -- Hook to automatically add package template when creating new .go files
+       autocmd("User", {
+         group = augroup("go_new"),
+         pattern = "MiniFilesActionCreate",
+         callback = function(args)
+           local path = args.data.to
+           -- Check if the created file is a .go file
+           if path and path:match('%.go$') then
+             vim.schedule(function()
+               -- Close mini.files first
+               if MiniFiles then
+                 MiniFiles.close()
+               end
+
+               -- Open the file
+               vim.cmd('edit ' .. vim.fn.fnameescape(path))
+
+               -- Determine package name from directory
+               local dir_name = vim.fn.fnamemodify(path, ':h:t')
+               local package_name = 'main'
+
+               -- Use directory name as package name if it's a valid Go identifier
+               if dir_name and dir_name ~= '.' and dir_name ~= "" and dir_name:match('^[a-z][a-z0-9_]*$') then
+                 package_name = dir_name
+               end
+
+               -- Check if file is empty before adding template
+               local line_count = vim.api.nvim_buf_line_count(0)
+               local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] or ""
+
+               if line_count == 1 and first_line == "" then
+                 local lines = { 'package ' .. package_name, "" }
+
+                 -- Add a main function if it's package main and filename is main.go
+                 local filename = vim.fn.fnamemodify(path, ':t')
+                 if package_name == 'main' and filename == 'main.go' then
+                   lines = {
+                     'package main',
+                     "",
+                     'func main() {',
+                     '	',
+                     '}',
+                   }
+                 end
+
+                 vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+
+                 -- Position cursor appropriately
+                 if package_name == 'main' and filename == 'main.go' then
+                   vim.api.nvim_win_set_cursor(0, {4, 1})  -- Inside main function
+                 else
+                   vim.api.nvim_win_set_cursor(0, {2, 0})  -- After package declaration
+                 end
+
+                 -- Start insert mode
+                 vim.cmd('startinsert')
+               end
+             end)
+           end
+         end,
+       })
   '';
 }
