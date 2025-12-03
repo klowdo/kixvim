@@ -39,6 +39,10 @@
             "v"
           ];
         }
+        {
+          __unkeyed-1 = "<leader>o";
+          group = "[O]verseer";
+        }
       ];
     };
   };

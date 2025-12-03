@@ -28,6 +28,10 @@
       url = "github:Apeiros-46B/qalc.nvim";
       flake = false;
     };
+    overseer-nvim = {
+      url = "github:stevearc/overseer.nvim/v1.6.0";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -111,6 +115,7 @@
         # Expose custom packages as overlay
         overlays.default = final: prev: {
           inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim;
+          overseer-nvim = self.packages.${prev.stdenv.hostPlatform.system}.overseer-nvim or prev.vimPlugins.overseer-nvim;
         };
       };
     };
