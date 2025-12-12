@@ -48,9 +48,48 @@
     # Add your own debuggers here
     dap-go = {
       enable = true;
-      # Configure dap-go for remote debugging support
+      # Full dap-go configuration with test debugging support
       settings = {
+        # Delve settings
+        delve = {
+          # Path to delve executable (defaults to "dlv" in PATH)
+          path = "dlv";
+          # Delve initialization timeout in seconds
+          initialize_timeout_sec = 20;
+          # Optional: specify a port for delve to listen on
+          # port = "\${port}";
+          # Build flags passed to delve
+          build_flags = "";
+          # Whether delve should run in detached mode (default true on Unix, false on Windows)
+          # detached = true;
+        };
+
+        # Additional DAP configurations
         dap_configurations = [
+          # Debug the current file/package
+          {
+            type = "go";
+            name = "Debug Package";
+            request = "launch";
+            program = "\${fileDirname}";
+          }
+          # Debug the current test function
+          {
+            type = "go";
+            name = "Debug Test (Current Function)";
+            request = "launch";
+            mode = "test";
+            program = "\${fileDirname}";
+          }
+          # Debug the entire test file
+          {
+            type = "go";
+            name = "Debug Test (Current File)";
+            request = "launch";
+            mode = "test";
+            program = "\${file}";
+          }
+          # Remote debugging configuration
           {
             type = "go";
             name = "Attach to remote (port 40000)";
@@ -155,6 +194,31 @@
       '';
       options = {
         desc = "Debug: See last session result.";
+      };
+    }
+    # Go-specific DAP keymaps
+    {
+      mode = "n";
+      key = "<leader>dgt";
+      action.__raw = ''
+        function()
+          require('dap-go').debug_test()
+        end
+      '';
+      options = {
+        desc = "Debug: Go test at cursor";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dgl";
+      action.__raw = ''
+        function()
+          require('dap-go').debug_last_test()
+        end
+      '';
+      options = {
+        desc = "Debug: Go last test";
       };
     }
     # DAP remote Go debugging keymaps

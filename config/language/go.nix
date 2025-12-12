@@ -63,7 +63,9 @@
 
       -- Formatting: disabled here because we use conform.nvim
       lsp_document_formatting = false,
-      gopls_cmd = nil, -- Use gopls from PATH
+      -- Explicitly set gopls command
+      gopls_cmd = nil,
+      gopls_remote_auto = false,
 
       -- UI configuration
       dap_debug = true,

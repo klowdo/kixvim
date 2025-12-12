@@ -66,6 +66,15 @@
   # https://nix-community.github.io/nixvim/plugins/lsp/index.html
   extraPackages = with pkgs; [
     docker-compose-language-service
+    gopls
+    # Additional Go tools for go.nvim
+    gotools # includes goimports
+    gomodifytags
+    impl
+    gotests
+    iferr
+    delve # Go debugger
+    gofumpt # formatter
   ];
   plugins.lsp = {
     enable = true;
