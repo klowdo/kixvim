@@ -1,11 +1,8 @@
 {
   # Dependencies
   #
-  # Snippet Engine & its associated nvim-cmp source
-  # https://nix-community.github.io/nixvim/plugins/luasnip/index.html
-  plugins.luasnip = {
-    enable = true;
-  };
+  # Snippet Engine configuration moved to snippets.nix
+  # This keeps nvim-cmp focused on completion only
 
   # https://nix-community.github.io/nixvim/plugins/cmp-nvim-lsp.html
   plugins.cmp-nvim-lsp = {
@@ -19,21 +16,6 @@
   plugins.copilot-cmp = {
     enable = false;
   };
-
-  # `friendly-snippets` contains a variety of premade snippets
-  #    See the README about individual language/framework/plugin snippets:
-  #    https://github.com/rafamadriz/friendly-snippets
-  # https://nix-community.github.io/nixvim/plugins/friendly-snippets.html
-  plugins.friendly-snippets = {
-    enable = true;
-  };
-
-  # TODO: Waiting on this bug to be fixed https://github.com/NixOS/nixpkgs/issues/306367
-  # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extralua#extraluapackages
-  extraLuaPackages = ps: [
-    # Required by luasnip
-    ps.jsregexp
-  ];
 
   # Autocompletion
   # See `:help cmp`
@@ -54,6 +36,63 @@
         completeopt = "menu,menuone,noinsert";
         # Trigger completion automatically after typing 1 character
         keyword_length = 1;
+      };
+
+      # Window configuration for better visibility
+      window = {
+        completion = {
+          border = "rounded";
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None";
+        };
+        documentation = {
+          border = "rounded";
+        };
+      };
+
+      # Formatting - show source and kind icons
+      formatting = {
+        fields = ["kind" "abbr" "menu"];
+        format = ''
+          function(entry, vim_item)
+            local kind_icons = {
+              Text = "󰉿",
+              Method = "󰆧",
+              Function = "󰊕",
+              Constructor = "",
+              Field = "󰜢",
+              Variable = "󰀫",
+              Class = "󰠱",
+              Interface = "",
+              Module = "",
+              Property = "󰜢",
+              Unit = "󰑭",
+              Value = "󰎠",
+              Enum = "",
+              Keyword = "󰌋",
+              Snippet = "",
+              Color = "󰏘",
+              File = "󰈙",
+              Reference = "󰈇",
+              Folder = "󰉋",
+              EnumMember = "",
+              Constant = "󰏿",
+              Struct = "󰙅",
+              Event = "",
+              Operator = "󰆕",
+              TypeParameter = "",
+            }
+            -- Kind icons
+            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind] or "", vim_item.kind)
+            -- Source
+            vim_item.menu = ({
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snip]",
+              path = "[Path]",
+              neorg = "[Neorg]",
+            })[entry.source.name] or string.format("[%s]", entry.source.name)
+            return vim_item
+          end
+        '';
       };
 
       performance = {
@@ -130,29 +169,38 @@
           priority = 1000;
           group_index = 1;
         }
+        # Snippets - shown alongside LSP for easy access
+        {
+          name = "luasnip";
+          priority = 900;
+          group_index = 1;
+          keyword_length = 1;
+          max_item_count = 5;
+        }
         # Copilot in separate group, shown after LSP
         # {
         #   name = "copilot";
         #   priority = 800;
         #   group_index = 2;
         # }
-        # Snippets and other sources come after
-        {
-          name = "luasnip";
-          priority = 750;
-          group_index = 3;
-        }
         {
           name = "path";
           priority = 500;
-          group_index = 3;
+          group_index = 2;
         }
         {
           name = "neorg";
           priority = 400;
-          group_index = 3;
+          group_index = 2;
         }
       ];
+
+      # Experimental features
+      experimental = {
+        ghost_text = {
+          hl_group = "Comment";
+        };
+      };
     };
   };
 }

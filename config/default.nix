@@ -16,6 +16,7 @@
     ./plugins/inc-rename.nix
     ./plugins/lsp.nix
     ./plugins/copilot.nix
+    ./plugins/snippets.nix
     ./plugins/nvim-cmp.nix
     ./plugins/mini.nix
     ./plugins/treesitter.nix
