@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # Enhanced LuaSnip Configuration
   # https://nix-community.github.io/nixvim/plugins/luasnip/index.html
 
