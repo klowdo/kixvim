@@ -11,6 +11,7 @@
     shfmt
     fixjson
     buf
+    rustfmt
   ];
 
   # Autoformat
@@ -71,6 +72,7 @@
         };
         go = ["golangci-lint"];
         c = ["clang-format"];
+        rust = ["rustfmt"];
 
         json = ["fixjson"];
         proto = ["buf"];
