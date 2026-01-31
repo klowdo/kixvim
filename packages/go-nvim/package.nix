@@ -8,6 +8,7 @@ vimUtils.buildVimPlugin {
   version = inputs.go-nvim.shortRev;
 
   nvimSkipModule = [
+    "init"
     "go.ginkgo"
     "go.fixplurals"
     "go.project"
