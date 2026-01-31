@@ -89,6 +89,16 @@
     #  - settings: Override the default settings passed when initializing the server.
     #        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     servers = {
+      nil_ls = {
+        enable = true;
+        settings = {
+          formatting.command = ["alejandra"];
+          nix.flake.autoArchive = true;
+          filetypes = ["nix"];
+          rootPatterns = ["flake.nix"];
+        };
+      };
+
       nixd = {
         enable = true;
         settings = {
