@@ -206,5 +206,74 @@
         desc = "[C]hange to current file's [P]arent directory";
       };
     }
+    {
+      mode = "n";
+      key = "gx";
+      action.__raw = ''
+        function()
+          local url_pattern = "https?://[%w-_%.%?%.:/%+=&%%#@!~]+"
+          local file_pattern = "[%w_%.%-~/]+"
+          local line = vim.api.nvim_get_current_line()
+          local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+
+          local function find_at_cursor(pattern)
+            local start_pos = 1
+            while true do
+              local match_start, match_end = line:find(pattern, start_pos)
+              if not match_start then return nil end
+              if col >= match_start and col <= match_end then
+                return line:sub(match_start, match_end)
+              end
+              start_pos = match_end + 1
+            end
+          end
+
+          local url = find_at_cursor(url_pattern)
+          if url then
+            vim.ui.open(url)
+            return
+          end
+
+          local file = find_at_cursor(file_pattern)
+          if file and vim.fn.filereadable(vim.fn.expand(file)) == 1 then
+            vim.cmd("edit " .. vim.fn.fnameescape(vim.fn.expand(file)))
+            return
+          end
+
+          vim.notify("No URL or file under cursor", vim.log.levels.WARN)
+        end
+      '';
+      options = {
+        desc = "Open URL or file under cursor";
+      };
+    }
+    {
+      mode = "n";
+      key = "<C-LeftMouse>";
+      action.__raw = ''
+        function()
+          vim.cmd("normal! <LeftMouse>")
+          vim.schedule(function()
+            local url_pattern = "https?://[%w-_%.%?%.:/%+=&%%#@!~]+"
+            local line = vim.api.nvim_get_current_line()
+            local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+
+            local start_pos = 1
+            while true do
+              local match_start, match_end = line:find(url_pattern, start_pos)
+              if not match_start then break end
+              if col >= match_start and col <= match_end then
+                vim.ui.open(line:sub(match_start, match_end))
+                return
+              end
+              start_pos = match_end + 1
+            end
+          end)
+        end
+      '';
+      options = {
+        desc = "Ctrl+Click to open URL";
+      };
+    }
   ];
 }
