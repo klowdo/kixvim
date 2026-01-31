@@ -5,7 +5,7 @@
   extraPackages = with pkgs; [
     # Used to format Lua code
     stylua
-    nixfmt-rfc-style
+    nixfmt
     alejandra
     clang-tools
     shfmt
