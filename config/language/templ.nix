@@ -2,11 +2,6 @@
   # templ language support for Go templating
   # https://github.com/a-h/templ
 
-  # Add templ tree-sitter grammar for syntax highlighting
-  plugins.treesitter = {
-    grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.templ];
-  };
-
   # Configure comment.nvim for templ files
   plugins.comment = {
     settings = {

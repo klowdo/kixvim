@@ -176,14 +176,14 @@
         desc = "Go: Add tags";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>gdt";
-      action = "<cmd>GoRmTag<CR>";
-      options = {
-        desc = "Go: Delete/remove tags";
-      };
-    }
+    # {
+    #   mode = "n";
+    #   key = "<leader>grt";
+    #   action = "<cmd>GoRmTag<CR>";
+    #   options = {
+    #     desc = "Go: Remove tags";
+    #   };
+    # }
 
     # Comments and docs
     {
@@ -198,7 +198,7 @@
     # Build and run
     {
       mode = "n";
-      key = "<leader>gb";
+      key = "<leader>gB";
       action = "<cmd>GoBuild<CR>";
       options = {
         desc = "Go: Build";
@@ -216,7 +216,7 @@
     # Debug
     {
       mode = "n";
-      key = "<leader>gd";
+      key = "<leader>gD";
       action = "<cmd>GoDebug<CR>";
       options = {
         desc = "Go: Debug";

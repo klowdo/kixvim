@@ -29,6 +29,7 @@
     ./plugins/spectre.nix
     ./plugins/golangci-lint.nix
     ./plugins/overseer.nix
+    ./plugins/quicker.nix
     # ./plugins/vim-go.nix  # Disabled - using go.nvim instead (config/language/go.nix)
     ./plugins/claude-code.nix
     # ./plugins/diagram.nix  # Temporarily disabled due to terminal size error

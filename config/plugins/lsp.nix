@@ -89,6 +89,16 @@
     #  - settings: Override the default settings passed when initializing the server.
     #        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     servers = {
+      nil_ls = {
+        enable = true;
+        settings = {
+          formatting.command = ["alejandra"];
+          nix.flake.autoArchive = true;
+          filetypes = ["nix"];
+          rootPatterns = ["flake.nix"];
+        };
+      };
+
       nixd = {
         enable = true;
         settings = {
@@ -233,9 +243,62 @@
       # pyright = {
       #  enable = true;
       #}
-      # rust_analyzer = {
-      #  enable = true;
-      #}
+      rust_analyzer = {
+        enable = true;
+        installCargo = false;
+        installRustc = false;
+        settings = {
+          cargo = {
+            allFeatures = true;
+            loadOutDirsFromCheck = true;
+            buildScripts = {
+              enable = true;
+            };
+          };
+          checkOnSave = true;
+          procMacro = {
+            enable = true;
+            ignored = {
+              leptos_macro = [
+                "component"
+                "server"
+              ];
+            };
+          };
+          inlayHints = {
+            bindingModeHints = {
+              enable = false;
+            };
+            chainingHints = {
+              enable = true;
+            };
+            closingBraceHints = {
+              enable = true;
+              minLines = 25;
+            };
+            closureReturnTypeHints = {
+              enable = "never";
+            };
+            lifetimeElisionHints = {
+              enable = "never";
+              useParameterNames = false;
+            };
+            maxLength = 25;
+            parameterHints = {
+              enable = true;
+            };
+            reborrowHints = {
+              enable = "never";
+            };
+            renderColons = true;
+            typeHints = {
+              enable = true;
+              hideClosureInitialization = false;
+              hideNamedConstructor = false;
+            };
+          };
+        };
+      };
       # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs
       #
       # Some languages (like typscript) have entire language plugins that can be useful:

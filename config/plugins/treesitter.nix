@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -9,60 +8,16 @@
   plugins = {
     treesitter = {
       enable = true;
-      folding = false; #COOL but.. need to know how to use
+      folding.enable = false;
 
-      # TODO: Don't think I need this as nixGrammars is true which should atuo install these???
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        c
-        gotmpl
-        helm
-        go
-        gosum
-        gomod
-        gowork
-        sql
-        comment
-        diff
-        html
-        bash
-        json
-        lua
-        make
-        markdown
-        nix
-        regex
-        toml
-        vim
-        vimdoc
-        yaml
-        terraform
-        just
-        gitcommit
-        git-rebase
-        git-rebase
-        gitignore
-        c
-        diff
-        html
-        bash
-        json
-        lua
-        make
-        markdown
-        nix
-        regex
-        toml
-        vim
-        vimdoc
-        yaml
-        terraform
-        just
-        gitcommit
-        git-rebase
-        git-rebase
-        gitignore
-        hcl
-      ];
+      # nixGrammars = true (default) includes all 325+ grammars automatically.
+      # To use a custom subset, use the new style with package.grammarPlugins:
+      # grammarPackages = with config.plugins.treesitter.package.grammarPlugins; [
+      #   go gotmpl gomod gosum gowork rust c cpp nix lua bash json yaml
+      #   terraform hcl markdown vim vimdoc html sql comment diff
+      #   gitcommit git_rebase gitignore toml regex make just helm templ
+      # ];
+
       settings = {
         nixvimInjections = true;
 
@@ -104,22 +59,10 @@
       };
     };
 
-    treesitter-refactor = {
-      inherit (config.plugins.treesitter) enable;
-
-      settings = {
-        highlight_definitions = {
-          enable = true;
-          clear_on_cursor_move = true;
-        };
-        smart_rename = {
-          enable = true;
-        };
-        navigation = {
-          enable = true;
-        };
-      };
-    };
+    # NOTE: treesitter-refactor is disabled because it depends on the legacy
+    # nvim-treesitter which conflicts with NixVim's new treesitter.
+    # The features (highlight_definitions, smart_rename, navigation) are
+    # available via LSP instead.
   };
 
   # There are additional nvim-treesitter modules that you can use to interact
