@@ -37,7 +37,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           commit-message: "chore(flake): update flake.lock"
           title: "chore(flake): update flake.lock"
           body: |
@@ -51,7 +51,7 @@ jobs:
         if: steps.create-pr.outputs.pull-request-number
         run: gh pr merge --auto --rebase "${{ steps.create-pr.outputs.pull-request-number }}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Create issue on failure
         if: failure()
