@@ -1,72 +1,13 @@
 {pkgs, ...}: {
-  # Import all your configuration modules here
   imports = [
-    # ./bufferline.nix
-    # ./vim-tmux.nix  # Disabled - using plugins/custom/plugins/tmux-navigator.nix instead
-    ./snacks.nix
     ./keys.nix
     ./auto.nix
-    ./lazy-loader.nix
-    ./toggle-darkmode.nix
-    # Plugins
-    ./plugins/gitsigns.nix
-    ./plugins/which-key.nix
-    ./plugins/telescope.nix
-    ./plugins/conform.nix
-    ./plugins/inc-rename.nix
-    ./plugins/lsp.nix
-    ./plugins/copilot.nix
-    ./plugins/snippets.nix
-    ./plugins/nvim-cmp.nix
-    ./plugins/mini.nix
-    ./plugins/treesitter.nix
-    ./plugins/auto-session.nix
-    ./plugins/flash.nix
-    ./plugins/neotest.nix
-    ./plugins/otter.nix
-    ./plugins/remote-nvim.nix
-    ./plugins/remote-sshfs.nix
-    ./plugins/spectre.nix
-    ./plugins/golangci-lint.nix
-    ./plugins/overseer.nix
-    ./plugins/quicker.nix
-    # ./plugins/vim-go.nix  # Disabled - using go.nvim instead (config/language/go.nix)
-    ./plugins/claude-code.nix
-    # ./plugins/diagram.nix  # Temporarily disabled due to terminal size error
 
-    # NOTE: Add/Configure additional plugins for Kickstart.nixvim
-    #
-    #  Here are some example plugins that I've included in the Kickstart repository.
-    #  Uncomment any of the lines below to enable them (you will need to restart nvim).
-    #
-    ./plugins/kickstart/plugins/debug.nix
-    ./plugins/kickstart/plugins/indent-blankline.nix
-    ./plugins/kickstart/plugins/lint.nix
-    ./plugins/kickstart/plugins/autopairs.nix
-    ./plugins/kickstart/plugins/neo-tree.nix
+    # Plugins organized by category
+    ./plugins
+
+    # Language-specific configurations
     ./language
-    #
-    # NOTE: Configure your own plugins `see https://nix-community.github.io/nixvim/`
-    # Add your plugins to ./plugins/custom/plugins and import them below
-    # NOTE: Not needed
-    # ./plugins/custom/plugins/lazygit.nix
-    # ./plugins/custom/plugins/toggleterm.nix
-    # ./plugins/custom/plugins/oil.nix
-    ./plugins/custom/plugins/tmux-navigator.nix
-    ./plugins/custom/plugins/git-root.nix
-    # ./plugins/custom/plugins/snacks.nix
-    # NOTE: Not needed stops here
-    ./plugins/custom/plugins/harpoon.nix
-    # ./plugins/custom/plugins/dadbod.nix
-    ./plugins/custom/plugins/neorg.nix
-    ./plugins/custom/plugins/persistence.nix
-    ./plugins/custom/plugins/obsidian.nix
-    ./plugins/custom/plugins/qalc.nix
-    ./plugins/custom/plugins/default.nix
-
-    #NOTE: a bit annoying.. maybe a kebinging to toggle
-    # ./plugins/custom/plugins/markview.nix
-    # ./plugins/custom/plugins
   ];
   enableMan = true;
   colorschemes = {
@@ -184,7 +125,6 @@
     nvim-web-devicons # TODO: Figure out how to configure using this with telescope
   ];
 
-  # TODO: Figure out where to move this
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraconfigluapre
   extraConfigLuaPre = ''
     if vim.g.have_nerd_font then

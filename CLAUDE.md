@@ -16,19 +16,23 @@ Kixvim is a NixVim configuration that provides a comprehensive Neovim setup usin
 
 ### Development Workflow
 - Configuration files are in `./config/` directory
-- When adding new config files, add them to `config/default.nix`
+- When adding new plugin files, add them to the appropriate category's `default.nix` in `config/plugins/<category>/`
 - Use `nix run .` to test changes immediately
 - Pre-commit hooks automatically run code quality checks
 
 ## Architecture and Structure
 
 ### Core Configuration Pattern
-- **Entry Point**: `config/default.nix` imports all configuration modules
-- **Plugin Organization**: Plugins are grouped in `config/plugins/` by category:
-  - `lsp/` - Language server configurations
-  - `kickstart/` - Kickstart.nvim plugin ports
-  - `custom/` - Custom plugin configurations
-- **Language Support**: Language-specific configs in `config/language/`
+- **Entry Point**: `config/default.nix` imports `./plugins`, `./language`, `./keys.nix`, and `./auto.nix`
+- **Plugin Organization**: Plugins are grouped in `config/plugins/` by functional category:
+  - `ui/` - UI enhancements (snacks, mini, which-key, theme, lazy-loader)
+  - `editor/` - Core editing (treesitter, flash, harpoon, autopairs, refactoring, etc.)
+  - `lsp/` - Language Server Protocol (servers, fidget, lsp-saga, trouble, conform, lint, otter)
+  - `completion/` - Completion and AI (nvim-cmp, snippets, copilot, claude-code)
+  - `git/` - Git integration (gitsigns, git-root)
+  - `tools/` - Developer workflow (telescope, debug/DAP, neotest, overseer, sessions, remote)
+  - `notes/` - Notes and utilities (neorg, obsidian, qalc, wakatime, clipboard-image)
+- **Language Support**: Language-specific configs in `config/language/` (go, rust, dotnet, templ)
 
 ### Flake Structure
 - Uses `flake-parts` for modular organization
@@ -39,14 +43,14 @@ Kixvim is a NixVim configuration that provides a comprehensive Neovim setup usin
 ### Key Configuration Files
 - `config/keys.nix` - Key mappings (leader key is Space)
 - `config/auto.nix` - Auto-commands
-- `config/snacks.nix` - Snacks plugin configuration
+- `config/plugins/ui/snacks.nix` - Snacks plugin configuration
 - `flake/checks.nix` - CI/CD configuration
 
 ## Plugin System
 
 ### Adding Plugins
-1. Add plugin configuration file in appropriate `config/plugins/` subdirectory
-2. Import the file in `config/default.nix`
+1. Add plugin configuration file in the appropriate `config/plugins/<category>/` subdirectory
+2. Import the file in that category's `default.nix`
 3. For external plugins, add to flake inputs if needed
 
 ### Built-in Features
