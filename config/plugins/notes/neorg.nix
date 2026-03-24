@@ -2,7 +2,7 @@
   extraLuaPackages = ps: [ps.lua-utils-nvim ps.pathlib-nvim];
 
   plugins.neorg = {
-    enable = true;
+    enable = false;
     settings = {
       telescopeIntegration.enable = true;
       load = {
