@@ -8,6 +8,7 @@
     ./persistence.nix
     ./remote-nvim.nix
     ./remote-sshfs.nix
+    ./fff.nix
     # ./toggleterm.nix  # Disabled - using Snacks terminal instead
     # ./dadbod.nix
   ];
