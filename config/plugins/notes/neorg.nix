@@ -1,6 +1,7 @@
 {...}: {
   extraLuaPackages = ps: [ps.lua-utils-nvim ps.pathlib-nvim];
 
+  # https://nix-community.github.io/nixvim/plugins/neorg/index.html
   plugins.neorg = {
     enable = false;
     settings = {
