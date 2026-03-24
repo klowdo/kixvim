@@ -37,13 +37,4 @@
       };
     };
   };
-
-  # keymaps = [
-  #   {
-  #     mode = "";
-  #     # mode = "n";
-  #     key = "<C-/>";
-  #     action = "<cmd>ToggleTerm size=40 dir=git_dor direction=float name=current<CR>";
-  #   }
-  # ];
 }

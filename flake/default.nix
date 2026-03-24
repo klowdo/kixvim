@@ -8,7 +8,6 @@
   imports = [
     ./checks.nix
     ./devshell.nix
-    # ./git-hooks.nix
     ./nixvim.nix
     ./pkgs-by-name.nix
     # ./treefmt.nix
