@@ -24,5 +24,6 @@ vimUtils.buildVimPlugin {
     "go.ts.go"
     "snips.all"
     "snips.go"
+    "go.ai.init"
   ];
 }

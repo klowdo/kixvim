@@ -1,5 +1,6 @@
-{
-  # https://nix-community.github.io/nixvim/plugins/toggleterm/index.html
+{...}: {
+  extraLuaPackages = ps: [ps.lua-utils-nvim ps.pathlib-nvim];
+
   plugins.neorg = {
     enable = true;
     settings = {
