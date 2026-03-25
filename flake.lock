@@ -243,6 +243,22 @@
         "type": "github"
       }
     },
+    "primes-99": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774370878,
+        "narHash": "sha256-ppFQaLSie9tSm2nlTrZPU47QyOaeqNMQjJf4vaIXgFo=",
+        "owner": "ThePrimeagen",
+        "repo": "99",
+        "rev": "0172d3caae2d8b967c9d47aa7557295f1481e5df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ThePrimeagen",
+        "repo": "99",
+        "type": "github"
+      }
+    },
     "qalc-nvim": {
       "flake": false,
       "locked": {
@@ -269,6 +285,7 @@
         "nixvim": "nixvim",
         "overseer-nvim": "overseer-nvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "primes-99": "primes-99",
         "qalc-nvim": "qalc-nvim",
         "snacks-nvim": "snacks-nvim",
         "trouble-nvim": "trouble-nvim"

@@ -32,6 +32,10 @@
       url = "github:stevearc/overseer.nvim/v1.6.0";
       flake = false;
     };
+    primes-99 = {
+      url = "github:ThePrimeagen/99";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -114,7 +118,7 @@
 
         # Expose custom packages as overlay
         overlays.default = final: prev: {
-          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim;
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99;
           overseer-nvim = self.packages.${prev.stdenv.hostPlatform.system}.overseer-nvim or prev.vimPlugins.overseer-nvim;
         };
       };
