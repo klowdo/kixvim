@@ -112,7 +112,7 @@
 
         # Add home-manager module
         homeModules.nixvim = {...}: {
-          imports = [nixvim.homeManagerModules.nixvim];
+          imports = [nixvim.homeModules.nixvim];
           programs.nixvim = import ./config;
         };
 
