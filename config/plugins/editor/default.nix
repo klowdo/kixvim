@@ -10,6 +10,7 @@
     ./inc-rename.nix
     ./tmux-navigator.nix
     ./refactoring.nix
+    ./undotree.nix
     # ./oil.nix
     # ./vim-tmux.nix  # Disabled - using tmux-navigator instead
   ];
