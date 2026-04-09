@@ -22,6 +22,10 @@
       surround = {
       };
       files = {
+        windows = {
+          preview = true;
+          width_preview = 80;
+        };
       };
       icons = {};
 
