@@ -8,6 +8,7 @@ vimUtils.buildVimPlugin {
   version = inputs.guihua-lua.shortRev;
 
   nvimSkipModule = [
+    "guihua.ts_obsolete.highlight"
     "guihua.ts_obsolete.query"
     "guihua.ts_obsolete.tsrange"
     "guihua.ts_obsolete.fold"
