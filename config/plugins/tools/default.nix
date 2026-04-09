@@ -11,6 +11,7 @@
     ./fff.nix
     ./primes-99.nix
     ./primes-99-config.nix
+    ./tv.nix
     # ./toggleterm.nix  # Disabled - using Snacks terminal instead
     # ./dadbod.nix
   ];
