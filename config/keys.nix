@@ -94,7 +94,6 @@
               virtual_text = false,
               virtual_lines = true,
             })
-            require('lsp_lines').toggle()
             vim.notify("Diagnostics: Virtual Lines", vim.log.levels.INFO)
           elseif vim.diagnostic.config().virtual_lines then
             -- If virtual_lines is on, switch to signs only
@@ -102,7 +101,6 @@
               virtual_text = false,
               virtual_lines = false,
             })
-            require('lsp_lines').toggle()
             vim.notify("Diagnostics: Signs Only", vim.log.levels.INFO)
           else
             -- If both are off, switch back to virtual_text

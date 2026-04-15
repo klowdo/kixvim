@@ -64,7 +64,7 @@
     {
       mode = "n";
       key = "<leader>tT";
-      action = "<cmd>lua require('neotest').run.run(vim.loop.cwd())<CR>";
+      action = "<cmd>lua require('neotest').run.run(vim.uv.cwd())<CR>";
       options = {
         desc = "Run All Test Files";
         silent = true;
