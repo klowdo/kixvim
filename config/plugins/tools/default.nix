@@ -6,7 +6,6 @@
     ./overseer.nix
     ./auto-session.nix
     ./persistence.nix
-    ./remote-nvim.nix
     ./remote-sshfs.nix
     ./fff.nix
     ./primes-99.nix
