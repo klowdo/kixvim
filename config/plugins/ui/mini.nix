@@ -63,43 +63,54 @@
         function OpenMiniFileCWD()
            local MiniFiles = require("mini.files")
 
-           -- Check if current buffer is a terminal
-           local function is_terminal_buffer()
-             local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
-             return buftype == 'terminal'
+           if MiniFiles.close() then
+             return
            end
 
-           -- Get appropriate path for mini.files
-           local function get_minifiles_path()
-             if is_terminal_buffer() then
-               -- For terminal buffers, use current working directory
-               return vim.fn.getcwd()
-             else
-               -- For regular files, use the buffer's file path
-               local buf_name = vim.api.nvim_buf_get_name(0)
+           local buf_name = vim.api.nvim_buf_get_name(0)
+           local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+           local focus_path
+           if buftype == "" and buf_name ~= "" and vim.fn.filereadable(buf_name) == 1 then
+             focus_path = vim.fn.fnamemodify(buf_name, ":p")
+           else
+             focus_path = vim.fn.getcwd()
+           end
 
-               -- If buffer has no name (empty buffer) or file doesn't exist, fall back
-               if buf_name == "" or not vim.fn.filereadable(buf_name) == 1 then
-                 -- Try to find git root, otherwise use cwd
-                 local git_root = vim.fs.root(vim.fn.getcwd(), ".git")
-                 return git_root or vim.fn.getcwd()
-               end
+           local start_dir = vim.fn.isdirectory(focus_path) == 1
+             and focus_path
+             or vim.fn.fnamemodify(focus_path, ":h")
 
-               -- Check if the file actually exists
-               if vim.fn.filereadable(buf_name) == 0 then
-                 -- File doesn't exist, find git root from current working directory
-                 local git_root = vim.fs.root(vim.fn.getcwd(), ".git")
-                 return git_root or vim.fn.getcwd()
-               end
+           local git_root = vim.fs.root(focus_path, ".git") or vim.fs.root(vim.fn.getcwd(), ".git")
 
-               return buf_name
+           if not git_root then
+             MiniFiles.open(focus_path, false)
+             return
+           end
+
+           local function strip_slash(p)
+             return (p:gsub("/+$", ""))
+           end
+           git_root = strip_slash(vim.fn.fnamemodify(git_root, ":p"))
+           start_dir = strip_slash(start_dir)
+
+           if start_dir ~= git_root and start_dir:sub(1, #git_root + 1) ~= git_root .. "/" then
+             MiniFiles.open(focus_path, false)
+             return
+           end
+
+           local branch = { git_root }
+           if start_dir ~= git_root then
+             local rel = start_dir:sub(#git_root + 2)
+             local acc = git_root
+             for part in rel:gmatch("[^/]+") do
+               acc = acc .. "/" .. part
+               table.insert(branch, acc)
              end
            end
 
-           local _ = MiniFiles.close() or MiniFiles.open(get_minifiles_path(), false)
-
+           MiniFiles.open(git_root, false)
            vim.defer_fn(function()
-             MiniFiles.reveal_cwd()
+             MiniFiles.set_branch(branch, { depth_focus = #branch })
            end, 30)
         end
 
@@ -213,11 +224,11 @@
 
        ---@param buf_id integer
        ---@param gitStatusMap table
+       ---@param cwd string
        ---@return nil
-       local function updateMiniWithGit(buf_id, gitStatusMap)
+       local function updateMiniWithGit(buf_id, gitStatusMap, cwd)
          vim.schedule(function()
            local nlines = vim.api.nvim_buf_line_count(buf_id)
-           local cwd = vim.fs.root(buf_id, ".git")
            local escapedcwd = escapePattern(cwd)
            if vim.fn.has("win32") == 1 then
              escapedcwd = escapedcwd:gsub("\\", "/")
@@ -288,22 +299,26 @@
        ---@param buf_id integer
        ---@return nil
        local function updateGitStatus(buf_id)
-         local cwd = vim.uv.cwd()
-         if not cwd or not vim.fs.root(cwd, ".git") then
+         local start = vim.uv.cwd()
+         if not start then
+           return
+         end
+         local git_root = vim.fs.root(start, ".git")
+         if not git_root then
            return
          end
 
          local currentTime = os.time()
-         if gitStatusCache[cwd] and currentTime - gitStatusCache[cwd].time < cacheTimeout then
-           updateMiniWithGit(buf_id, gitStatusCache[cwd].statusMap)
+         if gitStatusCache[git_root] and currentTime - gitStatusCache[git_root].time < cacheTimeout then
+           updateMiniWithGit(buf_id, gitStatusCache[git_root].statusMap, git_root)
          else
-           fetchGitStatus(cwd, function(content)
+           fetchGitStatus(git_root, function(content)
              local gitStatusMap = parseGitStatus(content)
-             gitStatusCache[cwd] = {
+             gitStatusCache[git_root] = {
                time = currentTime,
                statusMap = gitStatusMap,
              }
-             updateMiniWithGit(buf_id, gitStatusMap)
+             updateMiniWithGit(buf_id, gitStatusMap, git_root)
            end)
          end
        end
@@ -340,9 +355,13 @@
          pattern = "MiniFilesBufferUpdate",
          callback = function(sii)
            local bufnr = sii.data.buf_id
-           local cwd = vim.fn.expand("%:p:h")
-           if gitStatusCache[cwd] then
-             updateMiniWithGit(bufnr, gitStatusCache[cwd].statusMap)
+           local start = vim.uv.cwd()
+           if not start then
+             return
+           end
+           local git_root = vim.fs.root(start, ".git")
+           if git_root and gitStatusCache[git_root] then
+             updateMiniWithGit(bufnr, gitStatusCache[git_root].statusMap, git_root)
            end
          end,
        })
