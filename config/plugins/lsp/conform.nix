@@ -12,6 +12,7 @@
     fixjson
     buf
     rustfmt
+    taplo
   ];
 
   # Autoformat
@@ -76,6 +77,7 @@
 
         json = ["fixjson"];
         proto = ["buf"];
+        toml = ["taplo"];
 
         "_" = {
           __unkeyed-1 = "squeeze_blanks";
