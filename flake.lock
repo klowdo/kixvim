@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "atone-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775885479,
+        "narHash": "sha256-4MMBpguKE9iT+tR8AYLbVlJni1ot8493F2zGSWpS3Qo=",
+        "owner": "XXiaoA",
+        "repo": "atone.nvim",
+        "rev": "90a8456ea212b1d8afcbc331d52df6e65c765783",
+        "type": "github"
+      },
+      "original": {
+        "owner": "XXiaoA",
+        "repo": "atone.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -277,6 +293,7 @@
     },
     "root": {
       "inputs": {
+        "atone-nvim": "atone-nvim",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
         "go-nvim": "go-nvim",

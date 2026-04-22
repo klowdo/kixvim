@@ -36,6 +36,10 @@
       url = "github:ThePrimeagen/99";
       flake = false;
     };
+    atone-nvim = {
+      url = "github:XXiaoA/atone.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -118,7 +122,7 @@
 
         # Expose custom packages as overlay
         overlays.default = final: prev: {
-          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99;
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99 atone-nvim;
           overseer-nvim = self.packages.${prev.stdenv.hostPlatform.system}.overseer-nvim or prev.vimPlugins.overseer-nvim;
         };
       };
