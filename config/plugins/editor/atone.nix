@@ -6,8 +6,11 @@
   extraConfigLua = ''
     require('atone').setup({
       diff_cur_node = {
+        enabled = true,
         split_percent = 0.6,
         width = "adaptive",
+        treesitter = true,
+        inline_diff = true,
       },
     })
   '';
