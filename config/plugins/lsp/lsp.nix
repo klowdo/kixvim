@@ -426,16 +426,6 @@
             desc = "LSP: Type [D]efinition";
           };
         }
-        # Fuzzy find all the symbols in your current document.
-        #  Symbols are things like variables, functions, types, etc.
-        {
-          mode = "n";
-          key = "<leader>ds";
-          action.__raw = "require('telescope.builtin').lsp_document_symbols";
-          options = {
-            desc = "LSP: [D]ocument [S]ymbols";
-          };
-        }
         # Fuzzy find all the symbols in your current workspace.
         #  Similar to document symbols, except searches over your entire project.
         {

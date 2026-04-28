@@ -112,131 +112,69 @@
   keymaps = [
     {
       mode = "n";
-      key = "<F5>";
-      action.__raw = ''
-        function()
-          require('dap').continue()
-        end
-      '';
-      options = {
-        desc = "Debug: Start/Continue";
-      };
+      key = "<leader>dc";
+      action.__raw = "function() require('dap').continue() end";
+      options.desc = "Debug: Continue";
     }
     {
       mode = "n";
-      key = "<F1>";
-      action.__raw = ''
-        function()
-          require('dap').step_into()
-        end
-      '';
-      options = {
-        desc = "Debug: Step Into";
-      };
+      key = "<leader>di";
+      action.__raw = "function() require('dap').step_into() end";
+      options.desc = "Debug: Step Into";
     }
     {
       mode = "n";
-      key = "<F2>";
-      action.__raw = ''
-        function()
-          require('dap').step_over()
-        end
-      '';
-      options = {
-        desc = "Debug: Step Over";
-      };
+      key = "<leader>do";
+      action.__raw = "function() require('dap').step_over() end";
+      options.desc = "Debug: Step Over";
     }
     {
       mode = "n";
-      key = "<F3>";
-      action.__raw = ''
-        function()
-          require('dap').step_out()
-        end
-      '';
-      options = {
-        desc = "Debug: Step Out";
-      };
+      key = "<leader>dO";
+      action.__raw = "function() require('dap').step_out() end";
+      options.desc = "Debug: Step Out";
     }
     {
       mode = "n";
-      key = "<leader>b";
-      action.__raw = ''
-        function()
-          require('dap').toggle_breakpoint()
-        end
-      '';
-      options = {
-        desc = "Debug: Toggle Breakpoint";
-      };
+      key = "<leader>db";
+      action.__raw = "function() require('dap').toggle_breakpoint() end";
+      options.desc = "Debug: Toggle Breakpoint";
     }
     {
       mode = "n";
-      key = "<leader>B";
-      action.__raw = ''
-        function()
-          require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-        end
-      '';
-      options = {
-        desc = "Debug: Set Breakpoint";
-      };
+      key = "<leader>dB";
+      action.__raw = "function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end";
+      options.desc = "Debug: Conditional Breakpoint";
     }
-    # Toggle to see last session result. Without this, you can't see session output
-    # in case of unhandled exception.
     {
       mode = "n";
-      key = "<F7>";
-      action.__raw = ''
-        function()
-          require('dapui').toggle()
-        end
-      '';
-      options = {
-        desc = "Debug: See last session result.";
-      };
+      key = "<leader>du";
+      action.__raw = "function() require('dapui').toggle() end";
+      options.desc = "Debug: Toggle UI";
     }
-    # Go-specific DAP keymaps
+    {
+      mode = "n";
+      key = "<leader>dx";
+      action.__raw = "function() require('dap').terminate() end";
+      options.desc = "Debug: Terminate";
+    }
     {
       mode = "n";
       key = "<leader>dgt";
-      action.__raw = ''
-        function()
-          require('dap-go').debug_test()
-        end
-      '';
-      options = {
-        desc = "Debug: Go test at cursor";
-      };
+      action.__raw = "function() require('dap-go').debug_test() end";
+      options.desc = "Debug: Go test at cursor";
     }
     {
       mode = "n";
       key = "<leader>dgl";
-      action.__raw = ''
-        function()
-          require('dap-go').debug_last_test()
-        end
-      '';
-      options = {
-        desc = "Debug: Go last test";
-      };
+      action.__raw = "function() require('dap-go').debug_last_test() end";
+      options.desc = "Debug: Go last test";
     }
-    # DAP remote Go debugging keymaps
     {
       mode = "n";
-      key = "<leader>ddr";
+      key = "<leader>dr";
       action = "<cmd>DapGoRemote<CR>";
-      options = {
-        desc = "Debug: Attach to remote Go process (DAP)";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ddd";
-      action = "<cmd>DapGoRemoteDefault<CR>";
-      options = {
-        desc = "Debug: Attach to remote Go at :40000 (DAP)";
-      };
+      options.desc = "Debug: Attach remote";
     }
   ];
 

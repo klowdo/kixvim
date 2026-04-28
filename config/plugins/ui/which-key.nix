@@ -13,7 +13,7 @@
         }
         {
           __unkeyed-1 = "<leader>d";
-          group = "[D]ocument";
+          group = "[D]ebug";
         }
         {
           __unkeyed-1 = "<leader>r";
