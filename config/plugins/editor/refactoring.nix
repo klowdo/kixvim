@@ -5,7 +5,7 @@
 
   plugins.refactoring = {
     enable = true;
-    enableTelescope = true;
+    enableTelescope = false;
     settings = {
       prompt_func_return_type = {
         go = true;

@@ -24,13 +24,6 @@
         highlight = {
           additional_vim_regex_highlighting = true;
           enable = true;
-          disable =
-            # Lua
-            ''
-              function(lang, bufnr)
-                return vim.api.nvim_buf_line_count(bufnr) > 10000
-              end
-            '';
         };
 
         incremental_selection = {
@@ -71,6 +64,20 @@
   #    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
   #    - Show your current context: https://nix-community.github.io/nixvim/plugins/treesitter-context/index.html
   #    - Treesitter + textobjects: https://nix-community.github.io/nixvim/plugins/treesitter-textobjects/index.html
+
+  autoCmd = [
+    {
+      event = ["BufReadPost"];
+      callback.__raw = ''
+        function(args)
+          if vim.api.nvim_buf_line_count(args.buf) > 10000 then
+            vim.treesitter.stop(args.buf)
+          end
+        end
+      '';
+      desc = "Disable treesitter on large files";
+    }
+  ];
 
   keymaps = lib.mkIf config.plugins.treesitter-context.enable [
     {
