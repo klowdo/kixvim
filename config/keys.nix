@@ -5,6 +5,21 @@
   keymaps = [
     {
       mode = "n";
+      key = "<leader>st";
+      action.__raw = ''
+        function()
+          local type_filter = vim.fn.input("File type: ")
+          if type_filter ~= "" then
+            require('telescope.builtin').live_grep({ type_filter = type_filter })
+          end
+        end
+      '';
+      options = {
+        desc = "[S]earch by grep with [T]ype filter";
+      };
+    }
+    {
+      mode = "n";
       key = "<Esc>";
       action = "<cmd>nohlsearch<CR>";
     }
