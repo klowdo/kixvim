@@ -117,11 +117,11 @@
     "go-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1777910897,
-        "narHash": "sha256-pGOk+7eKaXrg7yLR9W6r2tRd32X/rWJiUjwiEESNSRs=",
+        "lastModified": 1778074149,
+        "narHash": "sha256-Xap+L2uXcwtnbFDBB416cV6vVI8dtvsmXE/05gH/kbI=",
         "owner": "ray-x",
         "repo": "go.nvim",
-        "rev": "b44b75e1f26e69a299b64306c354bc53580016aa",
+        "rev": "5c741a26f5df77c95d42d8f48e7008aea10e5f4f",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1777946660,
-        "narHash": "sha256-iw3XDIG6xxk+AZTcawCLHf6i9i4tXRzLZEoV9xhRToQ=",
+        "lastModified": 1778036283,
+        "narHash": "sha256-62EWg6lI0qyzm7oAx5cAnGkLutvJsRBe0KkEW2JDZCE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bc57abace07689cfd34203aa5fb4027514895987",
+        "rev": "ed67bc86e84e51d4a88e73c7fd36006dc876476f",
         "type": "github"
       },
       "original": {
