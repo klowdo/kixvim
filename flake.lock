@@ -133,11 +133,11 @@
     "guihua-lua": {
       "flake": false,
       "locked": {
-        "lastModified": 1777373194,
-        "narHash": "sha256-rgxqLQf7psUtXwnFOiDBt6CpMyaAMdz2pg3PKj12IzE=",
+        "lastModified": 1778732519,
+        "narHash": "sha256-3GtbyzmApCPA1keG2SOSMkiqbX+2ELQS7PmA09wl95g=",
         "owner": "ray-x",
         "repo": "guihua.lua",
-        "rev": "7c364432c2f9153ed068f4eab1989edd9f3fd302",
+        "rev": "d3dfb53fef990668996f2499c34a31eb3f2a2774",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1778672786,
-        "narHash": "sha256-Blg88K1jwG+P0Mr27+rKMFCufdrWkV3wWh9AdYtz0FQ=",
+        "lastModified": 1778762200,
+        "narHash": "sha256-NiOfW9nHPaDebfu3svLnJbljIMQgkEQnkm3orhePHPY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "eef00dfd8a712b34af845f9350bac681b1228bd1",
+        "rev": "27198194e52129ccd8e845e7d5911911e7fea7d7",
         "type": "github"
       },
       "original": {
@@ -186,11 +186,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1778682931,
-        "narHash": "sha256-6pfRbQfEBwFEkpm3ZDSi73xugqU55Ebvkt1cptJGmJk=",
+        "lastModified": 1778784534,
+        "narHash": "sha256-YhdVzgWiX8+qGdL5rybY7I4nL6SWQAHGn4hGS2+XOzk=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "9ad88c3f9778cd6d16fc85a80f3045b45af749e7",
+        "rev": "d885c9b79b3364b8bf63f1e0cb503d7c739d401f",
         "type": "github"
       },
       "original": {
