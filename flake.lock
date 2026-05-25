@@ -3,11 +3,11 @@
     "atone-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1778925621,
-        "narHash": "sha256-PdSUAWWobLpOak2OLkLWLuaTBfjpCitkFWUx8DS/Hac=",
+        "lastModified": 1779628644,
+        "narHash": "sha256-dQExm4etkosNcXQoUmCpq2v7Rh+lJxnOqSDottgLbSQ=",
         "owner": "XXiaoA",
         "repo": "atone.nvim",
-        "rev": "2c9dbfe447a3c5857a03098b0336c84f3b5c837f",
+        "rev": "db99dda557d702ecb72ab86b26b7e5b38b6dcade",
         "type": "github"
       },
       "original": {
@@ -133,11 +133,11 @@
     "guihua-lua": {
       "flake": false,
       "locked": {
-        "lastModified": 1779181624,
-        "narHash": "sha256-9VeU2HS1IRyixmbt1/jblHU5SNoqc+FJI52fAOq85aI=",
+        "lastModified": 1779624981,
+        "narHash": "sha256-TWXsHAYXz4UejiRpsMyuYKA70wFrXGvVMXsFL8qnGyY=",
         "owner": "ray-x",
         "repo": "guihua.lua",
-        "rev": "26e2e557f5b1a0c5cb25cab41d71ddba61523cba",
+        "rev": "8c34ebbb59990c6cb70110d786ad82b2a7182c78",
         "type": "github"
       },
       "original": {
@@ -186,11 +186,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1779601302,
-        "narHash": "sha256-ACtB1llc5ZOJM+lxfbIudM2i/c5dFxRJVXVvhOLpjqA=",
+        "lastModified": 1779683452,
+        "narHash": "sha256-Ksx8jghpDBCPDiTaTyGhYUXG1BUwqPjf5pajl0q0cqA=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "cb0107f6e18cdf7bf79a025fad154a4414c04383",
+        "rev": "afec1bae0e6f7983a5c03ec559f7ed2ec0e714a9",
         "type": "github"
       },
       "original": {
