@@ -108,9 +108,13 @@
              end
            end
 
+           if vim.fn.isdirectory(focus_path) == 0 then
+             table.insert(branch, focus_path)
+           end
+
            MiniFiles.open(git_root, false)
            vim.defer_fn(function()
-             MiniFiles.set_branch(branch, { depth_focus = #branch })
+             MiniFiles.set_branch(branch)
            end, 30)
         end
 
