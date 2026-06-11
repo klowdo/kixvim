@@ -234,11 +234,11 @@
     "primes-99": {
       "flake": false,
       "locked": {
-        "lastModified": 1777736377,
-        "narHash": "sha256-LQb5jqzTNWVyFNKlICjhnk25fTAmyC38s8/mrOKp//M=",
+        "lastModified": 1781108371,
+        "narHash": "sha256-KiFdTCl9Cje+AIkl21UzKRYCgooKKrX0GIlX/fyMX5U=",
         "owner": "ThePrimeagen",
         "repo": "99",
-        "rev": "4d229141546290746c82ac90f5afc2786865b5f3",
+        "rev": "f897910d0dc1b919be88ab1cd35445bb53d70390",
         "type": "github"
       },
       "original": {
