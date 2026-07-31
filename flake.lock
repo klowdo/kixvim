@@ -3,11 +3,11 @@
     "atone-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1784755332,
-        "narHash": "sha256-rXUUrpKLDrnOPASbxnUe9WcvGIDH4EJ+nK+Jrjjq2dA=",
+        "lastModified": 1785427691,
+        "narHash": "sha256-JG61boskf9KG1R5STS87xzsmWQXAWws/DddiHfJ20UQ=",
         "owner": "XXiaoA",
         "repo": "atone.nvim",
-        "rev": "2aa3f00f0268f61ff5828dee9c87a6272c61651f",
+        "rev": "b5ebb6b27693fa759899b33c6fac787611e08a39",
         "type": "github"
       },
       "original": {
