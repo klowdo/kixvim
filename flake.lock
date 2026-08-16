@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "dooing": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786670297,
+        "narHash": "sha256-yoHr6Kl3oKwcQyNR+FvlkKHK6uHtLubUJLXIAhth2U8=",
+        "owner": "atiladefreitas",
+        "repo": "dooing",
+        "rev": "4c4ac78088cf462398a0206e79669936a184175f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "atiladefreitas",
+        "repo": "dooing",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -244,6 +260,7 @@
     "root": {
       "inputs": {
         "atone-nvim": "atone-nvim",
+        "dooing": "dooing",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
         "go-nvim": "go-nvim",
