@@ -43,6 +43,10 @@
           __unkeyed-1 = "<leader>o";
           group = "[O]verseer";
         }
+        {
+          __unkeyed-1 = "<leader>x";
+          group = "Dooing todos";
+        }
       ];
     };
   };

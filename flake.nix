@@ -46,6 +46,10 @@
       url = "github:XXiaoA/atone.nvim";
       flake = false;
     };
+    dooing = {
+      url = "github:atiladefreitas/dooing";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -128,7 +132,7 @@
 
         # Expose custom packages as overlay
         overlays.default = final: prev: {
-          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99 atone-nvim;
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99 atone-nvim dooing;
           overseer-nvim = self.packages.${prev.stdenv.hostPlatform.system}.overseer-nvim or prev.vimPlugins.overseer-nvim;
         };
       };
