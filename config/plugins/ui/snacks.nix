@@ -1,89 +1,86 @@
 {
-  pkgs,
   self,
   system,
   ...
 }: {
-  plugins.dashboard = {
-    enable = false;
-    settings = {
-      theme = "hyper";
-      config.header = [
-        "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
-        "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
-        "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
-        "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
-        "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
-        "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
-      ];
-      shortcut = [
-        {
-          action = {
-            __raw = "function(path) vim.cmd('Telescope find_files') end";
-          };
-          desc = "Files";
-          group = "Label";
-          icon = " ";
-          icon_hl = "@variable";
-          key = "f";
-        }
-        {
-          action = "Telescope app";
-          desc = " Apps";
-          group = "DiagnosticHint";
-          key = "a";
-        }
-        {
-          action = "Telescope dotfiles";
-          desc = " dotfiles";
-          group = "Number";
-          key = "d";
-        }
-      ];
-      week_header = {
-        enable = true;
-      };
-
-      #     project = {
-      #   enable = false;
-      # };
-    };
-  };
-  plugins.noice.enable = true;
-  plugins.noice.settings.lsp.hover.enabled = true;
-
-  ## For snacks.Image
-  extraLuaPackages = ps: [ps.magick];
-  extraPackages = [pkgs.imagemagick];
-  plugins.snacks = {
-    enable = true;
-    package = self.packages.${system}.snacks-nvim;
-    settings = {
-      bigfile = {
-        enabled = true;
-        notify = true;
-        size = 1024 * 100; # 100kb
-      };
-      # dashboard = {enabled = true;};
-      indent = {enabled = true;};
-      input = {enabled = true;};
-      notifier = {enabled = true;};
-      quickfile = {enabled = true;};
-      scroll = {enabled = true;};
-      statuscolumn = {enabled = true;};
-      words = {enabled = true;};
-      terminal = {
-        enabled = true;
-      };
-      image = {
-        enabled = true;
-        doc = {
-          inline = false;
+  plugins = {
+    dashboard = {
+      enable = false;
+      settings = {
+        theme = "hyper";
+        config.header = [
+          "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+          "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+          "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+          "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+          "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+          "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+        ];
+        shortcut = [
+          {
+            action = {
+              __raw = "function(path) vim.cmd('Telescope find_files') end";
+            };
+            desc = "Files";
+            group = "Label";
+            icon = " ";
+            icon_hl = "@variable";
+            key = "f";
+          }
+          {
+            action = "Telescope app";
+            desc = " Apps";
+            group = "DiagnosticHint";
+            key = "a";
+          }
+          {
+            action = "Telescope dotfiles";
+            desc = " dotfiles";
+            group = "Number";
+            key = "d";
+          }
+        ];
+        week_header = {
+          enable = true;
         };
-      };
 
-      lazygit = {
-        enabled = true;
+        #     project = {
+        #   enable = false;
+        # };
+      };
+    };
+    noice.enable = true;
+    noice.settings.lsp.hover.enabled = true;
+    snacks = {
+      enable = true;
+      package = self.packages.${system}.snacks-nvim;
+      settings = {
+        bigfile = {
+          enabled = true;
+          notify = true;
+          size = 1024 * 100; # 100kb
+        };
+        # dashboard = {enabled = true;};
+        indent = {enabled = true;};
+        input = {enabled = true;};
+        notifier = {enabled = true;};
+        quickfile = {enabled = true;};
+        scroll = {enabled = true;};
+        statuscolumn = {enabled = true;};
+        words = {enabled = true;};
+        terminal = {
+          enabled = true;
+        };
+        image = {
+          enabled = true;
+          doc = {
+            inline = false;
+          };
+        };
+
+        lazygit = {
+          enabled = true;
+        };
       };
     };
   };
