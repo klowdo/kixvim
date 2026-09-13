@@ -19,11 +19,11 @@
     "dooing": {
       "flake": false,
       "locked": {
-        "lastModified": 1786985327,
-        "narHash": "sha256-p0yMSFcY0CH5HHX2er+cBN7ArkE347qqZYBbnuOi4/U=",
+        "lastModified": 1789244568,
+        "narHash": "sha256-+T5TB8gHOWeTmARDPo4p/W7VqJQ1AGpO7Kyedx0+7P8=",
         "owner": "atiladefreitas",
         "repo": "dooing",
-        "rev": "8134f408bfff0e0ff7c5cf7f424b67b6cf429717",
+        "rev": "0af73fe5dc31bedd0d04799b9f2922171952958e",
         "type": "github"
       },
       "original": {
