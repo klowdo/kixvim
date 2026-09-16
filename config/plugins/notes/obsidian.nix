@@ -16,18 +16,13 @@
       new_notes_location = "current_dir";
       # Disable legacy commands to avoid deprecation warning
       legacy_commands = false;
+      daily_notes = {
+        folder = "daily";
+      };
       workspaces = [
         {
-          name = "work";
-          path = "~/obsidian/work";
-        }
-        {
-          name = "school";
-          path = "~/obsidian/school";
-        }
-        {
-          name = "home";
-          path = "~/obsidian/home";
+          name = "notes";
+          path = "~/notes";
         }
       ];
     };
