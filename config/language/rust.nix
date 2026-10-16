@@ -11,11 +11,6 @@
 
   # Add Rust development tools
   extraPackages = with pkgs; [
-    # Core Rust toolchain
-    cargo
-    rustc
-    rustfmt
-    clippy
     rust-analyzer
 
     # Additional tools

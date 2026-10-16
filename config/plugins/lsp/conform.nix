@@ -7,11 +7,9 @@
     stylua
     nixfmt
     alejandra
-    clang-tools
     shfmt
     fixjson
     buf
-    rustfmt
     taplo
   ];
 

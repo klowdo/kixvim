@@ -2,7 +2,6 @@
   extraPackages = with pkgs; [
     netcoredbg
     go
-    dotnet-sdk
   ];
   extraPlugins = with pkgs.vimPlugins; [
     FixCursorHold-nvim

@@ -47,7 +47,6 @@
   # https://nix-community.github.io/nixvim/plugins/lsp/index.html
   extraPackages = with pkgs; [
     docker-compose-language-service
-    dotnet-sdk
     gopls
     # Additional Go tools for go.nvim
     gotools # includes goimports
@@ -101,6 +100,7 @@
       };
 
       clangd = {
+        package = null;
         enable = true;
         filetypes = [
           "c"
