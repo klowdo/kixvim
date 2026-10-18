@@ -111,11 +111,11 @@
     "go-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1791710937,
-        "narHash": "sha256-f6ukfkZu75BoJ125XaCfbkyFlIYBMQeX57lfl7LJTbA=",
+        "lastModified": 1792311694,
+        "narHash": "sha256-HX+jtsTtz1QgYtrgfW7wNZ2X4HwCjOmEA8hz12uwdFA=",
         "owner": "ray-x",
         "repo": "go.nvim",
-        "rev": "eb08c23f0bb291905cac63d81cd68f6a994c81e6",
+        "rev": "5622d97078b30d853a0dfaf8cba204263a60c99a",
         "type": "github"
       },
       "original": {
