@@ -1,4 +1,15 @@
-{
+{pkgs, ...}: let
+  navigate = key: direction: {
+    mode = "n";
+    key = "<C-${key}>";
+    action.__raw = ''
+      function()
+        vim.cmd((vim.env.HERDR_PANE_ID and "HerdrNavigate" or "TmuxNavigate") .. "${direction}")
+      end
+    '';
+    options = {silent = true;};
+  };
+in {
   # https://nix-community.github.io/nixvim/plugins/tmux-navigator/index.html
   plugins.tmux-navigator = {
     enable = true;
@@ -7,34 +18,18 @@
       disable_when_zoomed = 1;
       # Don't write commands when navigating
       preserve_zoom = 1;
+      no_mappings = 1;
     };
   };
 
+  # https://github.com/bojackduy/nvim-herdr-navigation
+  extraPlugins = [pkgs.nvim-herdr-navigation];
+
   # Ensure navigation only works in normal mode, not insert mode
   keymaps = [
-    {
-      mode = "n";
-      key = "<C-h>";
-      action = "<cmd>TmuxNavigateLeft<CR>";
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<C-j>";
-      action = "<cmd>TmuxNavigateDown<CR>";
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<C-k>";
-      action = "<cmd>TmuxNavigateUp<CR>";
-      options = {silent = true;};
-    }
-    {
-      mode = "n";
-      key = "<C-l>";
-      action = "<cmd>TmuxNavigateRight<CR>";
-      options = {silent = true;};
-    }
+    (navigate "h" "Left")
+    (navigate "j" "Down")
+    (navigate "k" "Up")
+    (navigate "l" "Right")
   ];
 }

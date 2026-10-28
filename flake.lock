@@ -193,6 +193,22 @@
         "type": "github"
       }
     },
+    "nvim-herdr-navigation": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784534445,
+        "narHash": "sha256-5R8+fvcp+AtgtTHA3vVLMY3q6AszyShjA/g4RX/mXT8=",
+        "owner": "bojackduy",
+        "repo": "nvim-herdr-navigation",
+        "rev": "7798a2f027465698cb1a51695327e138319f61f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bojackduy",
+        "repo": "nvim-herdr-navigation",
+        "type": "github"
+      }
+    },
     "overseer-nvim": {
       "flake": false,
       "locked": {
@@ -267,6 +283,7 @@
         "guihua-lua": "guihua-lua",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "nvim-herdr-navigation": "nvim-herdr-navigation",
         "overseer-nvim": "overseer-nvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "primes-99": "primes-99",

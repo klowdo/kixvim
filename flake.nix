@@ -50,6 +50,10 @@
       url = "github:atiladefreitas/dooing";
       flake = false;
     };
+    nvim-herdr-navigation = {
+      url = "github:bojackduy/nvim-herdr-navigation";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -132,7 +136,7 @@
 
         # Expose custom packages as overlay
         overlays.default = final: prev: {
-          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99 atone-nvim dooing;
+          inherit (self.packages.${prev.stdenv.hostPlatform.system}) go-nvim guihua-lua qalc-nvim primes-99 atone-nvim dooing nvim-herdr-navigation;
           overseer-nvim = self.packages.${prev.stdenv.hostPlatform.system}.overseer-nvim or prev.vimPlugins.overseer-nvim;
         };
       };
