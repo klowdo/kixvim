@@ -2,7 +2,10 @@
   # https://nix-community.github.io/nixvim/plugins/clipboard-image/index.html
   plugins.clipboard-image = {
     enable = true;
-    clipboardPackage = pkgs.wl-clipboard;
+    clipboardPackage =
+      if pkgs.stdenv.hostPlatform.isDarwin
+      then pkgs.pngpaste
+      else pkgs.wl-clipboard;
   };
 
   # Fix health check API compatibility issue
